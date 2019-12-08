@@ -1,0 +1,298 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Chettan|Roboto+Slab|Work+Sans");
+
+/* =====================================================
+    Settings Start
+===================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+a,
+small,
+span,
+input,
+.custom-select,
+.btn,
+.breadcrumb,
+.breadcrumb-item,
+.nav-link,
+.dropdown-btn {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.sidebar-topbar>span {
+    font-family: 'Baloo Chettan', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+ul {
+    margin: 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+* {
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #d9d9d9;
+}
+
+
+/* =====================================================
+    Sidebar-Left Starts
+===================================================== */
+
+.wrapper .sidebar-left {
+    height: 100%;
+    width: 250px;
+    z-index: 10;
+    background-color: #080808;
+    position: fixed;
+    top: 0;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    overflow-y: auto;
+}
+
+.wrapper .sidebar-left .sidebar-topbar {
+    position: -webkit-sticky;
+    position: sticky;
+    height: 56px;
+    border-bottom: 1px solid #1a1a1a;
+    top: 0;
+    background-color: #080808;
+    -webkit-box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Icon Start Travel */
+
+.wrapper .sidebar-left .sidebar-topbar i:first-child {
+    font-size: 28px;
+    transform: rotate(-45deg);
+    color: red;
+    padding: 15px 18px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+}
+
+.wrapper .sidebar-left .sidebar-topbar>span {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 0 5px;
+    color: red;
+}
+
+
+/* End Icon */
+
+.wrapper .sidebar-left .sidebar-topbar i:last-child {
+    font-size: 30px;
+    color: #f7f7f7;
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item {
+    padding: 0px 0px;
+    border-bottom: 1px solid black;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list.first {
+    border-top: 1px solid black;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list {
+    color: #e6e6e6;
+    text-decoration: none;
+    display: block;
+    padding: 13px 0;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2.active,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list.active {
+    background-color: white;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2:hover,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list:hover {
+    background-color: #b30000;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2.active span:first-child i,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2:hover span:first-child i,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list.active span:first-child i,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list:hover span:first-child i {
+    color: black;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2 span:first-child i,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list span:first-child i {
+    padding: 0 5px 0 15px;
+    color: #ff3333;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list2 span i.fa-chevron-down,
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a.items-list span i.fa-chevron-down {
+    float: right;
+    font-size: 14px;
+    margin: 6px 15px 0 0;
+}
+
+.wrapper .sidebar-left>.side-menu ul.navbar-nav li.nav-item a {
+    color: #e6e6e6;
+    text-decoration: none;
+}
+
+.wrapper .sidebar-left .side-bar-bottom {
+    width: 100%;
+    height: 56px;
+    background-color: #080808;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0px;
+    margin-top: 317px;
+    color: #cccccc;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 2px 5px 5px black;
+    box-shadow: 0px 2px 5px 5px black;
+}
+
+.wrapper .sidebar-left .side-bar-bottom ul {
+    margin: 0;
+}
+
+.wrapper .sidebar-left .side-bar-bottom ul li {
+    padding: 10px;
+}
+
+.wrapper .sidebar-left .side-bar-bottom ul li:hover i {
+    color: #ff6666;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
+
+.wrapper .sidebar-left .side-bar-bottom a i {
+    color: #cccccc;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
+}
+
+
+/* =====================================================
+    Sidebar-left Ends
+===================================================== */
+
+
+/* ****************************Dashboard Media Queries End Here************************** */
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: .5rem
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1)
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none
+}
+
+.list-inline {
+    padding-left: 0;
+    list-style: none
+}
+
+.list-inline-item {
+    display: inline-block
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: .5rem
+}
+
+
+/* Side bar */
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none
+}
+
+.wrapper .sidebar-left::-webkit-scrollbar {
+    width: 0px;
+}

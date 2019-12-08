@@ -1,0 +1,337 @@
+<section class="bannercontainer">
+    <div id="rev_slider_wrapper3" class="rev_slider_wrapper fullscreen-container" style="background-color: transparent; padding: 0px; overflow: visible; height: 750px;">
+        <!-- START REVOLUTION SLIDER fullscreen mode -->
+        <div id="rev_video_slider" class="rev_slider fullscreenbanner revslider-initialised tp-simpleresponsive rev_redraw_on_blurfocus" style="margin-top: 0px; margin-bottom: 0px; height: 750px;">
+            <ul class="tp-revslider-mainul" style="visibility: visible; display: block; overflow: hidden; width: 1349px; height: 100%; max-height: none; left: 0px;">
+                <!-- BACKGROUND LAYER -->
+                <li style="width: 100%; height: 100%; overflow: hidden; z-index: 20; visibility: inherit; opacity: 1; background-color: rgba(255, 255, 255, 0);">
+                    <!-- MAIN IMAGE -->
+                    <div class="slotholder" style="position: absolute; top: 0px; left: 0px; z-index: 0; width: 100%; height: 100%; visibility: inherit; opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">
+                        <!--Runtime Modification - Img tag is Still Available for SEO Goals in Source - <img src="img/home/slider/slider-07.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg defaultimg" data-no-retina="">-->
+                        <div class="rs-background-video-layer" style="z-index: 30; left: 0px; top: 0px; transform: matrix(1, 0, 0, 1, 0, 0); visibility: inherit; opacity: 1;">
+                            <img src="../../../assets/img/background_home.jpg" width="100%" height="100%" style="opacity: 1; visibility: inherit; height: 134.9%; position: absolute; left: 0px; top: -17.45%; width: 100%; display: block;" class="resizelistener" id="iframe48878" />
+                        </div>
+                    </div>
+                    <!-- LAYERS -->
+                    <!-- BACKGROUND VIDEO LAYER -->
+                </li>
+            </ul>
+
+            <div class="tp-loader off" style="display: none;">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="tp-bannertimer" style="visibility: hidden; width: 0%;"></div>
+        </div>
+        <!-- END REVOLUTION SLIDER -->
+    </div>
+</section>
+
+<section class="searchDestinationSection">
+    <div class="container">
+        <div class="headingTitle">
+            <h2>Search <span>Your Destination</span></h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="searchDestination">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a data-toggle="tab" href="#hotel"><i class="fa fa-home" aria-hidden="true"></i>
+                <span>hotel</span></a
+              >
+            </li>
+            <li>
+              <a href="#tour"
+                ><i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>tours</span></a
+              >
+            </li>
+            <li>
+              <a href="#flights"
+                ><i class="fa fa-plane" aria-hidden="true"></i>
+                <span>flights</span></a
+              >
+            </li>
+            <li>
+              <a href="#vehicles"
+                ><i class="fa fa-car" aria-hidden="true"></i>
+                <span>vehicles</span></a
+              >
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="tour" class="tab-pane fade in active">
+              <form
+                (ngSubmit)="onSubmit()"
+                class="home_search_form"
+                id="home_search_form"
+              >
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <input
+                          type="text"
+                          placeholder="Search Location"
+                          aria-label="Number"
+                          matInput
+                          [formControl]="myControl"
+                          [matAutocomplete]="auto" required
+                        />
+                        <mat-autocomplete
+                          #auto="matAutocomplete"
+                          (optionSelected)="onOptionSelected($event)"
+                        >
+                          <mat-option
+                            *ngFor="let option of filteredOptions | async"
+                            [value]="option"
+                          >
+                            {{ option }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="searchbtn">
+                      <button type="submit" class="btn btn-default">
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PACKAGES SECTION -->
+<section class="ourPackagesSection ptb-100">
+  <div class="container">
+    <div class="sectionTitleHomeCity">
+      <h2>our packages</h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <div class="ourPackage">
+          <div class="ourPackageImg">
+            <img
+              src="../../assets/img/home/packages/our-packages-01.jpg"
+              alt=""
+            />
+          </div>
+          <div class="ourPackageContent">
+            <h4>Danang</h4>
+            <p>4 days, 5 nights start from <span>$1000</span></p>
+            <a href="booking-1.html" class="btn buttonCustomPrimary"
+              >Book Now</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="ourPackage">
+          <div class="ourPackageImg">
+            <img
+              src="../../assets/img/home/packages/our-packages-02.jpg"
+              alt=""
+            />
+          </div>
+          <div class="ourPackageContent">
+            <h4>Nha Trang</h4>
+            <p>4 days, 5 nights start from <span>$1000</span></p>
+            <a href="booking-1.html" class="btn buttonCustomPrimary"
+              >Book Now</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="ourPackage">
+          <div class="ourPackageImg">
+            <img
+              src="../../assets/img/home/packages/our-packages-03.jpg"
+              alt=""
+            />
+          </div>
+          <div class="ourPackageContent">
+            <h4>Hoi An</h4>
+            <p>4 days, 5 nights start from <span>$1000</span></p>
+            <a href="booking-1.html" class="btn buttonCustomPrimary"
+              >Book Now</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="ourPackage">
+          <div class="ourPackageImg">
+            <img
+              src="../../assets/img/home/packages/our-packages-04.jpg"
+              alt=""
+            />
+          </div>
+          <div class="ourPackageContent">
+            <h4>Da Lat</h4>
+            <p>4 days, 5 nights start from <span>$1000</span></p>
+            <a href="booking-1.html" class="btn buttonCustomPrimary"
+              >Book Now</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="ourPackage">
+          <div class="ourPackageImg">
+            <img
+              src="../../assets/img/home/packages/our-packages-05.jpg"
+              alt=""
+            />
+          </div>
+          <div class="ourPackageContent">
+            <h4>Ha Noi</h4>
+            <p>4 days, 5 nights start from <span>$1000</span></p>
+            <a href="booking-1.html" class="btn buttonCustomPrimary"
+              >Book Now</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="ourPackage">
+          <div class="ourPackageImg">
+            <img
+              src="../../assets/img/home/packages/our-packages-06.jpg"
+              alt=""
+            />
+          </div>
+          <div class="ourPackageContent">
+            <h4>Ho Chi Minh city</h4>
+            <p>4 days, 5 nights start from <span>$1000</span></p>
+            <a href="booking-1.html" class="btn buttonCustomPrimary"
+              >Book Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT TRAVEL SECTION -->
+<section
+  class="nextTravelSection ptb-100"
+  style="background-image: url(../../assets/img/nextTravel.jpeg);padding: 100px 0 100px 0; "
+>
+  <div class="container">
+    <div class="sectionTitleHomeCity2">
+      <h2>Get 30% Off On Your Next Travel</h2>
+      <p>
+        Travel between 22nd August to 23 November and get exciting <br />
+        offers along with a sure 10% cash discount.
+      </p>
+    </div>
+    <div class="content">
+      <ul class="nextTravelContent">
+        <li>
+          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>Get exciting
+          offers along with a sure 10% cash discount.
+        </li>
+        <li>
+          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>Sed do eiusmod
+          tempor
+        </li>
+        <li>
+          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>3000 Adipisicing
+          elit sed do eiusmod
+        </li>
+        <li>
+          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>Fugiat nulla
+          pariatur.
+        </li>
+      </ul>
+      <a
+        href="single-package-right-sidebar.html"
+        class="btn buttonCustomPrimary"
+        >view details</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- TOP DESTINATION SECTION -->
+<section class="topDestinationSection ptb-100">
+  <div class="container">
+    <div class="sectionTitleHomeCity">
+      <h2>top destination</h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 col-xs-6">
+        <div class="destinationContent">
+          <a href="destination-single-city.html"
+            ><img
+              src="../../assets/img/home-destination/destination/destination-img-01.jpg"
+              alt="Image"
+            />
+            <h5>Australia</h5>
+            <p>Opera House</p>
+          </a>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+                <div class="destinationContent">
+                    <a href="destination-single-city.html">
+                        <img src="../../assets/img/home-destination/destination/destination-img-02.jpg" alt="Image" />
+                        <h5>America</h5>
+                        <p>Statue of Liberty</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+                <div class="destinationContent">
+                    <a href="destination-single-city.html">
+                        <img src="../../assets/img/home-destination/destination/destination-img-03.jpg" alt="Image" />
+                        <h5>London</h5>
+                        <p>Big Ben Watch</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+                <div class="destinationContent">
+                    <a href="destination-single-city.html">
+                        <img src="../../assets/img/home-destination/destination/destination-img-04.jpg" alt="Image" />
+                        <h5>Russia</h5>
+                        <p>Moxco Tower</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+                <div class="destinationContent">
+                    <a href="destination-single-city.html">
+                        <img src="../../assets/img/home-destination/destination/destination-img-05.jpg" alt="Image" />
+                        <h5>India</h5>
+                        <p>Tajmahal</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+                <div class="destinationContent">
+                    <a href="destination-single-city.html">
+                        <img src="../../assets/img/home-destination/destination/destination-img-06.jpg" alt="Image" />
+                        <h5>France</h5>
+                        <p>Eiffel Tower</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>

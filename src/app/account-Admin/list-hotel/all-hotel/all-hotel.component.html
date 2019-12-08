@@ -1,0 +1,102 @@
+<!-- ===========Innerpage-wrapper============= -->
+<section>
+    <div class="content listing-content users-list">
+        <div class="in-content-wrapper">
+            <div class="row no-gutters" style="height: 90px;">
+                <div class="col">
+                    <div class="heading-messages">
+                        <h3>Listing Hotel</h3>
+                    </div>
+                    <!-- End heading-messages -->
+                </div>
+                <div class="col-md-4">
+                    <div class="breadcrumb">
+                        <div class="breadcrumb-item">
+                            <i class="fa fa-angle-right"></i><a href="#">Listing Hotel</a>
+                        </div>
+                        <div class="breadcrumb-item active">
+                            <i class="fa fa-angle-right"></i>All
+                        </div>
+                    </div>
+                    <!-- end breadcrumb -->
+                </div>
+                <!-- End column -->
+            </div>
+            <!-- end row -->
+
+            <div class="box">
+
+                <!-- end row -->
+                <div class="mat-elevation-z8">
+
+                    <div class="example-header">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="example-container mat-elevation-z8">
+
+                        <mat-table [dataSource]="dataSource" matSort>
+
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Address Column -->
+                            <ng-container matColumnDef="address">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                            </ng-container>
+
+                            <!-- City Column -->
+                            <ng-container matColumnDef="city">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.city"> {{row.city}} </mat-cell>
+                            </ng-container>
+                            <!-- hotel_owner Column -->
+                            <ng-container matColumnDef="hotel_owner">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Owner </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.hotel_owner"> {{row.hotel_owner}} </mat-cell>
+                            </ng-container>
+                            <!-- price Column -->
+                            <ng-container matColumnDef="price">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.price"> {{row.price}} </mat-cell>
+                            </ng-container>
+                            <!-- rating Column -->
+                            <ng-container matColumnDef="rating">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Rating </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.rating"> {{row.rating}} </mat-cell>
+                            </ng-container>
+                            <!-- status Column -->
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.status"> {{row.status}} </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;">
+                            </mat-row>
+                        </mat-table>
+
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end box -->
+        </div>
+        <!-- end in-content-wrapper -->
+    </div>
+    <!-- end users-list -->
+</section>
+<!-- ===========End Innerpage-wrapper============= -->

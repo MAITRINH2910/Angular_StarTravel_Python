@@ -1,0 +1,1022 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../../../assets/plugins/bootstrap/css/bootstrap.min.css";
+@import "../../../assets/plugins/revolution/css/settings.css";
+* {
+    outline: 0;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-family: montserrat, sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+    color: #969696;
+    font-weight: 400;
+    overflow-x: hidden
+}
+
+ul {
+    margin: 0;
+    padding: 0
+}
+
+ul li {
+    list-style-type: none
+}
+
+p {
+    font-size: 14px;
+    color: #969696;
+    font-weight: 400;
+    line-height: 21px
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: montserrat, sans-serif;
+    text-transform: uppercase;
+    color: #262a2e;
+    margin-top: 0;
+    font-weight: 700
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 25px
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0
+}
+
+.no-margin {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.mb-30 {
+    margin-bottom: 30px
+}
+
+body.bodyColor.wrapper {
+    margin: 0 auto
+}
+
+body.bodyColor .navbar-fixed-top {
+    right: auto;
+    left: auto
+}
+
+.btn {
+    display: inline-block;
+    border-radius: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    padding: 9px 0
+}
+
+a {
+    color: #ff891e;
+    text-decoration: none;
+    transition: all .3s ease-in-out
+}
+
+a:hover {
+    -ms-filter: "alpha(opacity=$value)";
+    filter: alpha(opacity=0.8);
+    -moz-opacity: .8;
+    -khtml-opacity: .8;
+    opacity: .8;
+    outline: 0;
+    text-decoration: none
+}
+
+a:focus {
+    outline: 0
+}
+
+.main-wrapper {
+    position: relative
+}
+
+.form-control:focus {
+    box-shadow: none
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+    outline: 0
+}
+
+.buttonCustomPrimary {
+    height: 45px;
+    line-height: 45px;
+    border-radius: 4px;
+    background-color: #ff891e;
+    text-transform: uppercase;
+    color: #fff!important;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 0
+}
+
+@media(min-width:768px) {
+    .gridResize>.col-sm-2 {
+        width: 100%
+    }
+}
+
+@media(min-width:992px) {
+    .gridResize>.col-sm-2 {
+        width: 11%
+    }
+}
+
+.gridResize .buttonCustomPrimary {
+    margin-top: 4px
+}
+
+.destinations {
+    background-color: #262a2e;
+    border-radius: 5px
+}
+
+.destinations a img {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px
+}
+
+.destinations .media-left {
+    display: inline-block;
+    float: left
+}
+
+@media(max-width:767px) {
+    .destinations .media-left {
+        width: 100%;
+        padding-right: 0
+    }
+}
+
+@media(min-width:768px) {
+    .destinations .media-left {
+        width: 50%;
+        padding-right: 10px
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-left {
+        width: auto
+    }
+}
+
+.destinations .media-left img {
+    width: 100%
+}
+
+@media(max-width:767px) {
+    .destinations .media-body {
+        padding: 15px
+    }
+}
+
+@media(min-width:768px) {
+    .destinations .media-body {
+        padding: 15px 23px 0
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-body {
+        padding: 80px 23px 0
+    }
+}
+
+@media(min-width:1200px) {
+    .destinations .media-body {
+        padding: 80px 45px 0
+    }
+}
+
+.destinations .media-body .media-heading {
+    color: #fff;
+    text-transform: uppercase
+}
+
+@media(min-width:768px) {
+    .destinations .media-body .media-heading {
+        font-size: 16px;
+        margin-bottom: 10px
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-body .media-heading {
+        font-size: 20px;
+        margin-bottom: 25px
+    }
+}
+
+@media(min-width:768px) {
+    .destinations .media-body p {
+        font-size: 11px;
+        margin-bottom: 10px;
+        line-height: 17px
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-body p {
+        font-size: 20px;
+        margin-bottom: 25px;
+        line-height: 21px
+    }
+}
+
+@media(min-width:1200px) {
+    .destinations .media-body p {
+        font-size: 14px;
+        line-height: 21px
+    }
+}
+
+@media(max-width:767px) {
+    .destinations .media-body .list-unstyled {
+        margin-bottom: 15px;
+        width: 100%;
+        display: block;
+        float: none
+    }
+}
+
+@media(min-width:768px) {
+    .destinations .media-body .list-unstyled {
+        margin-bottom: 5px;
+        width: 33%;
+        display: inline-block;
+        float: left
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-body .list-unstyled {
+        margin-bottom: 24px
+    }
+}
+
+.destinations .media-body .list-unstyled li {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #fff
+}
+
+.destinations .media-body .list-unstyled li i {
+    color: #ff891e;
+    margin-right: 10px
+}
+
+.destinations .media-body .list-unstyled li a {
+    text-transform: capitalize;
+    color: #929497;
+    margin-bottom: 8px
+}
+
+@media(min-width:768px) {
+    .destinations .media-body .list-unstyled li a {
+        font-size: 11px;
+        line-height: 17px
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-body .list-unstyled li a {
+        font-size: 14px;
+        line-height: 21px
+    }
+}
+
+.destinations .media-body .list-unstyled li a i {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    font-size: 8px;
+    color: #929497
+}
+
+.destinations .media-body .list-unstyled li a:hover {
+    color: #ff891e
+}
+
+.destinations .media-body .list-unstyled li a:hover i {
+    color: #ff891e
+}
+
+@media(min-width:768px) {
+    .destinations .media-body .list-unstyled li:first-child {
+        margin-bottom: 0
+    }
+}
+
+@media(min-width:992px) {
+    .destinations .media-body .list-unstyled li:first-child {
+        margin-bottom: 16px
+    }
+}
+
+.destinations .media-body .media-btn {
+    display: block;
+    width: 100%
+}
+
+.relatedItem .maskingInfo .buttonTransparent,
+.relatedItem .maskingInfo .paginationCenter .pagination li:first-child a,
+.paginationCenter .pagination li:first-child .relatedItem .maskingInfo a,
+.relatedItem .maskingInfo .paginationCenter .pagination li:last-child a,
+.paginationCenter .pagination li:last-child .relatedItem .maskingInfo a,
+.relatedItem .maskingInfo .isotopeFilters ul.filter>li a,
+.isotopeFilters ul.filter>li .relatedItem .maskingInfo a {
+    color: #fff
+}
+
+.relatedItem:hover img {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    border-radius: 4px
+}
+
+.relatedItem:hover .maskingInfo {
+    -ms-filter: "alpha(opacity=$value)";
+    filter: alpha(opacity=1);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+    border-radius: 4px
+}
+
+.countryTabs .tab-content .well h3 {
+    color: #222;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 25px
+}
+
+.countryTabs .tab-content .well .list-unstyled {
+    margin-bottom: 15px;
+    float: left
+}
+
+.countryTabs .tab-content .well .list-unstyled li {
+    color: #222;
+    margin-bottom: 15px
+}
+
+.countryTabs .tab-content .well .list-unstyled li i {
+    margin-right: 10px
+}
+
+.countryTabs .tab-content .well .buttonCustomPrimary {
+    padding: 0 20px
+}
+
+.countryTabs .tab-content .well .buttonCustomPrimary:hover {
+    -ms-filter: "alpha(opacity=$value)";
+    filter: alpha(opacity=1);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1
+}
+
+.singleCartSidebar .form-horizontal .buttonTransparent,
+.singleCartSidebar .form-horizontal .paginationCenter .pagination li:first-child a,
+.paginationCenter .pagination li:first-child .singleCartSidebar .form-horizontal a,
+.singleCartSidebar .form-horizontal .paginationCenter .pagination li:last-child a,
+.paginationCenter .pagination li:last-child .singleCartSidebar .form-horizontal a,
+.singleCartSidebar .form-horizontal .isotopeFilters ul.filter>li a,
+.isotopeFilters ul.filter>li .singleCartSidebar .form-horizontal a {
+    height: 50px;
+    line-height: 50px;
+    margin-top: 30px
+}
+
+.singleCartSidebar .form-horizontal .buttonTransparent .fa-angle-right,
+.singleCartSidebar .form-horizontal .paginationCenter .pagination li:first-child a .fa-angle-right,
+.paginationCenter .pagination li:first-child .singleCartSidebar .form-horizontal a .fa-angle-right,
+.singleCartSidebar .form-horizontal .paginationCenter .pagination li:last-child a .fa-angle-right,
+.paginationCenter .pagination li:last-child .singleCartSidebar .form-horizontal a .fa-angle-right,
+.singleCartSidebar .form-horizontal .isotopeFilters ul.filter>li a .fa-angle-right,
+.isotopeFilters ul.filter>li .singleCartSidebar .form-horizontal a .fa-angle-right {
+    margin-left: 20px;
+    font-size: 18px
+}
+
+.sectionTitleHomeCity {
+    text-align: center;
+    margin-bottom: 50px
+}
+
+.sectionTitleHomeCity h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #222
+}
+
+.sectionTitleHomeCity h2 span {
+    color: #ff891e
+}
+
+.sectionTitleHomeCity p {
+    font-size: 18px
+}
+
+.sectionTitleHomeCity2 {
+    text-align: center;
+    margin-bottom: 50px
+}
+
+.sectionTitleHomeCity2 h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff
+}
+
+.sectionTitleHomeCity2 h2 span {
+    color: #ff891e
+}
+
+.sectionTitleHomeCity2 p {
+    font-size: 18px;
+    color: #fff;
+    line-height: 26px
+}
+
+.ptb-100 {
+    padding-top: 50px;
+    /* padding-bottom: 100px */
+}
+
+.mostPopulerToure .thumbnail .caption h4 a:hover {
+    color: #222!important;
+    text-decoration: none;
+    cursor: default
+}
+
+.mostPopulerToure .thumbnail .caption .detailsInfo .detailsBtn li a {
+    font-size: 13px;
+    padding: 0 10px
+}
+
+.searchDestinationSection {
+    position: relative;
+    top: -150px
+}
+
+@media(min-width:480px) {
+    .searchDestinationSection {
+        top: -300px
+    }
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection {
+        position: absolute;
+        top: 130px;
+        left: 2%
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection {
+        top: 135px;
+        left: 7%
+    }
+}
+
+@media(min-width:1200px) {
+    .searchDestinationSection {
+        top: 185px;
+        left: 7%
+    }
+}
+
+.searchDestinationSection .headingTitle {
+    text-align: center
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .headingTitle {
+        text-align: left
+    }
+}
+
+.searchDestinationSection .headingTitle h2 {
+    color: #ff891e;
+    font-size: 19px;
+    line-height: 36px;
+    font-weight: 700
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .headingTitle h2 {
+        font-size: 25px
+    }
+}
+
+.searchDestinationSection .headingTitle h2 span {
+    display: inline-block;
+    line-height: 36px;
+    color: #fff;
+    font-weight: 400
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .headingTitle h2 span {
+        display: block;
+        font-size: 32px
+    }
+}
+
+.searchDestinationSection .searchDestination {
+    border: 0;
+    background-color: #fff;
+    color: #222!important;
+    border-radius: 5px
+}
+
+.searchDestinationSection .searchDestination .nav-tabs {
+    border-bottom: 0
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li {
+    border-width: 1px!important;
+    border-color: #dedede;
+    border-style: solid;
+    border-top: 0;
+    margin: 0!important;
+    float: left;
+    width: 25%;
+    border-right: 0
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .nav-tabs li {
+        border-right: 0
+    }
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li:first-child {
+    border-left: 0
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li:last-child {
+    border-right: 0
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li.active {
+    border-bottom: 0
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li.active a {
+    color: #ff891e;
+    position: relative;
+    border: 0 solid transparent
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li.active a span {
+    color: #222
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li.active a::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ff891e;
+    content: ''
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li a {
+    text-align: center!important;
+    border: 0;
+    margin: 0!important;
+    color: #969696;
+    height: 70px;
+    padding: 15px 7px
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .nav-tabs li a {
+        padding-top: 10px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .nav-tabs li a {
+        height: 90px;
+        padding-top: 20px
+    }
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li a:hover {
+    background-color: transparent;
+    border: 0!important
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li a i {
+    display: block;
+    font-size: 20px
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .nav-tabs li a i {
+        font-size: 25px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .nav-tabs li a i {
+        font-size: 30px
+    }
+}
+
+.searchDestinationSection .searchDestination .nav-tabs li a span {
+    text-transform: uppercase;
+    font-size: 12px!important
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .nav-tabs li a span {
+        font-size: 14px!important
+    }
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .tab-content {
+        margin: 10px 0 30px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .tab-content {
+        margin: 30px 0
+    }
+}
+
+@media(min-width:1200px) {
+    .searchDestinationSection .searchDestination .tab-content {
+        margin: 30px 0 30px 30px
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane {
+    padding: 20px 10px
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane {
+        padding: 20px 40px 50px 20px
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane label {
+    font-weight: 400;
+    color: #222
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .marginTop {
+    margin-top: 0
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .marginTop {
+        margin-top: 15px
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .form-control {
+    width: 100%;
+    height: 45px;
+    border-color: #dedede
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .form-control {
+        width: 150px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .form-control {
+        width: 200px
+    }
+}
+
+@media(min-width:1200px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .form-control {
+        width: 222px
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .form-control:active,
+.searchDestinationSection .searchDestination .tab-content .tab-pane .form-control:focus {
+    border-color: #dedede
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder {
+    border-color: #dedede;
+    margin-bottom: 15px;
+    width: 100%
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder {
+        width: 150px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder {
+        width: 200px
+    }
+}
+
+@media(min-width:1200px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder {
+        width: 220px
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbToggle {
+    /* background-image: url(../plugins/selectbox/images/arrow-down-2.png); */
+    background-repeat: no-repeat
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbSelector {
+    color: #969696!important;
+    text-transform: capitalize
+}
+
+@media(min-width:768px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbSelector {
+        margin-left: -10px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbSelector {
+        margin-left: 0
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbOptions {
+    border-color: #dedede
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate {
+    position: relative;
+    border: 0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    display: block
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .form-control {
+    border-style: solid;
+    border-width: 1px!important;
+    border-radius: 3px;
+    padding: 4px 12px
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .form-control:active,
+.searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .form-control:focus {
+    border-color: #969696
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .input-group-addon {
+    position: absolute;
+    top: 10px;
+    right: 31px
+}
+
+@media(min-width:1200px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .input-group-addon {
+        right: 31px
+    }
+}
+
+@media(min-width:992px) {
+    .searchDestinationSection .searchDestination .tab-content .tab-pane .searchbtn {
+        margin-top: 20px
+    }
+}
+
+.searchDestinationSection .searchDestination .tab-content .tab-pane .searchbtn .btn-default {
+    background-color: #ff891e;
+    padding: 14px 27px;
+    color: #fff
+}
+
+.ourPackagesSection {
+    padding-top: 0;
+    margin-top: -80px
+}
+
+@media(min-width:480px) {
+    .ourPackagesSection {
+        margin-top: -200px
+    }
+}
+
+@media(min-width:768px) {
+    .ourPackagesSection {
+        padding-top: 100px;
+        margin-top: 0
+    }
+}
+
+.ourPackagesSection .ourPackage {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 30px;
+    border-radius: 5px
+}
+
+.ourPackagesSection .ourPackage:hover .ourPackageContent {
+    bottom: 30px;
+    border-radius: 5px
+}
+
+.ourPackagesSection .ourPackage:hover .ourPackageContent .buttonCustomPrimary {
+    visibility: visible;
+    opacity: 1
+}
+
+.ourPackagesSection .ourPackage:hover .ourPackageImg {
+    border-radius: 5px
+}
+
+.ourPackagesSection .ourPackage:hover .ourPackageImg:after {
+    opacity: 1
+}
+
+.ourPackagesSection .ourPackage .ourPackageImg {
+    height: auto;
+    position: relative
+}
+
+.ourPackagesSection .ourPackage .ourPackageImg img {
+    width: 100%;
+    border-radius: 5px
+}
+
+.ourPackagesSection .ourPackage .ourPackageImg:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .2);
+    opacity: 0;
+    border-radius: 5px
+}
+
+.ourPackagesSection .ourPackage .ourPackageContent {
+    position: absolute;
+    left: 30px;
+    bottom: -30px;
+    transition: all .4s ease
+}
+
+.ourPackagesSection .ourPackage .ourPackageContent h4 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px
+}
+
+.ourPackagesSection .ourPackage .ourPackageContent p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 21px;
+    margin-bottom: 30px;
+    text-transform: uppercase
+}
+
+.ourPackagesSection .ourPackage .ourPackageContent p span {
+    color: #ff891e
+}
+
+.ourPackagesSection .ourPackage .buttonCustomPrimary {
+    visibility: hidden;
+    opacity: 0;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    font-size: 13px
+}
+
+.nextTravelSection {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden
+}
+
+.nextTravelSection:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .1);
+    content: ''
+}
+
+.nextTravelSection .sectionTitleHomeCity2 {
+    text-align: left
+}
+
+.nextTravelSection .content .nextTravelContent {
+    margin-top: 35px
+}
+
+.nextTravelSection .content .nextTravelContent li {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 5px
+}
+
+.nextTravelSection .content .nextTravelContent li i {
+    margin-right: 15px;
+    margin-left: 1px
+}
+
+.nextTravelSection .content .buttonCustomPrimary {
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 35px
+}
+
+.videoPlayerSection {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    height: 350px
+}
+
+@media(min-width:768px) {
+    .videoPlayerSection {
+        height: 500px
+    }
+}
+
+@media(min-width:768px) {
+    .videoPlayerSection {
+        height: 550px
+    }
+}
+
+.videoPlayerSection:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .1);
+    content: ''
+}
+
+.videoPlayerSection .videoPlayerIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.videoPlayerSection .videoPlayerIcon a {
+    display: block;
+    text-align: center
+}
+
+.videoPlayerSection .videoPlayerIcon i {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    font-size: 60px;
+    color: #fff;
+    line-height: 100px;
+    padding-left: 10px
+}

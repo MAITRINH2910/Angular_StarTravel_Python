@@ -1,0 +1,132 @@
+<!-- ===========Innerpage-wrapper============= -->
+<section>
+    <div class="content listing-content users-list">
+        <div class="in-content-wrapper">
+            <div class="row no-gutters" style="height: 90px;">
+                <div class="col">
+                    <div class="heading-messages">
+                        <h3>Listing</h3>
+                    </div>
+                    <!-- End heading-messages -->
+                </div>
+                <div class="col-md-4">
+                    <div class="breadcrumb">
+                        <div class="breadcrumb-item">
+                            <i class="fa fa-angle-right"></i><a href="#">Listing</a>
+                        </div>
+                        <div class="breadcrumb-item active">
+                            <i class="fa fa-angle-right"></i>Approved
+                        </div>
+                    </div>
+                    <!-- end breadcrumb -->
+                </div>
+                <!-- End column -->
+            </div>
+            <!-- end row -->
+
+            <div class="box">
+                <div class="row no-gutters">
+                    <div class="col text-left">
+                        <div class="add-new">
+                            <a [routerLink]="['/host/hotel/add-hotel']" routerLinkActive="router-link-active">Add New<i class="fa fa-plus"></i></a>
+                        </div>
+                        <!-- End add-new-->
+                    </div>
+                    <!-- End column-->
+                    <!-- <div class="col text-right">
+                        <div class="tools-btns">
+                            <a href="#"><i
+                      class="fa fa-print"
+                      data-toggle="tooltip"
+                      data-html="true"
+                      title="Print"
+                    ></i
+                  ></a>
+                            <a href="#"><i
+                      class="fa fa-file"
+                      data-toggle="tooltip"
+                      data-html="true"
+                      title="Pdf"
+                    ></i
+                  ></a>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- end row -->
+                <div class="mat-elevation-z8">
+                    <div class="example-header">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="example-container mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Address Column -->
+                            <ng-container matColumnDef="address">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
+                            </ng-container>
+
+                            <!-- City Column -->
+                            <ng-container matColumnDef="city">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.city}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Hotel_owner Column -->
+                            <ng-container matColumnDef="hotel_owner">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Owner </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.hotel_owner}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Price Column -->
+                            <ng-container matColumnDef="price">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Rating Column -->
+                            <ng-container matColumnDef="rating">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Rating </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.rating}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Status Column -->
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                                <mat-cell *matCellDef="let row" [style.color]="row.status"> {{row.status}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <a [routerLink]="['/host/hotel/edit-hotel', row.id]" routerLinkActive="router-link-active"><i class="fa fa-edit"></i>&nbsp;</a> |
+                                    <div (click)="onDeleteList(row.id)" style="cursor: pointer;">&nbsp;<i class="fa fa-trash" aria-hidden="true"></i></div>
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;">
+                            </mat-row>
+                        </mat-table>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end box -->
+        </div>
+        <!-- end in-content-wrapper -->
+    </div>
+    <!-- end users-list -->
+</section>
+<!-- ===========End Innerpage-wrapper============= -->

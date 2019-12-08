@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Chettan|Roboto+Slab|Work+Sans");
+
+/* =====================================================
+    Settings Start
+===================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+a,
+small,
+span,
+input,
+.custom-select,
+.btn,
+.breadcrumb,
+.breadcrumb-item,
+.nav-link,
+.dropdown-btn {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.sidebar-topbar>span {
+    font-family: 'Baloo Chettan', cursive;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.content {
+    margin: 0 20px 0 270px;
+}
+
+.box {
+    background-color: #e6e6e6;
+    border: 1px solid #f0f0f0;
+    -webkit-box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+    margin: 0 0 40px 0;
+}
+
+.heading-messages h3 {
+    margin: 30px 0px 50px 10px;
+}
+
+.details-text h4 {
+    margin: 10px 20px;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0 20px 0;
+}
+
+
+/* ****************************Dashboard Starts Here************************** */
+
+
+/* =====================================================
+    Dashboard Starts
+===================================================== */
+
+.dashbaord .box {
+    padding: 40px 0px;
+    border: unset;
+}
+
+.dashbaord .box .dashboard-wrapper {
+    padding: 0 30px;
+}
+
+.dashbaord .box .row:nth-child(1) .col-lg-6,
+.dashbaord .box .row:nth-child(1) .col-xl,
+.dashbaord .box .row:nth-child(1) .col {
+    padding: 0px 10px;
+}
+
+.dashbaord .box .row:nth-child(1) .col-lg-6 .col,
+.dashbaord .box .row:nth-child(1) .col-xl .col,
+.dashbaord .box .row:nth-child(1) .col .col {
+    padding: 0;
+}
+
+.dashbaord .box .dashboard-boxes {
+    border-radius: 7px;
+    color: #f2f2f2;
+    text-align: center;
+    overflow: hidden;
+}
+
+.dashbaord .box .dashboard-boxes .icon {
+    background-color: #0062cc;
+    border-radius: 7px 0 0 7px;
+    min-height: 90px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.dashbaord .box .dashboard-boxes .icon i {
+    font-size: 35px;
+    color: #f2f2f2;
+    opacity: .8;
+}
+
+.dashbaord .box .dashboard-boxes a h5 {
+    color: #f2f2f2;
+    min-height: 90px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0 10px;
+    margin: 0;
+}
+
+.dashbaord .box .dashboard-boxes.primary {
+    background-color: #007bff;
+}
+
+.dashbaord .box .dashboard-boxes.primary:hover {
+    background-color: #1a88ff;
+}
+
+.dashbaord .box .dashboard-boxes.primary .icon {
+    background-color: #0062cc;
+}
+
+.dashbaord .box .dashboard-boxes.success {
+    background-color: #28a745;
+}
+
+.dashbaord .box .dashboard-boxes.success:hover {
+    background-color: #2dbc4e;
+}
+
+.dashbaord .box .dashboard-boxes.success .icon {
+    background-color: #1e7e34;
+}
+
+.dashbaord .box .dashboard-boxes.danger {
+    background-color: #dc3545;
+}
+
+.dashbaord .box .dashboard-boxes.danger:hover {
+    background-color: #e04b59;
+}
+
+.dashbaord .box .dashboard-boxes.danger .icon {
+    background-color: #bd2130;
+}
+
+.dashbaord .box .dashboard-boxes.warning {
+    background-color: #edb100;
+}
+
+.dashbaord .box .dashboard-boxes.warning:hover {
+    background-color: #ffc008;
+}
+
+.dashbaord .box .dashboard-boxes.warning .icon {
+    background-color: #ba8b00;
+}
+
+.dashbaord .box .dashboard1-wrapper {
+    background-color: #dbdbdb;
+    border-radius: 20px;
+    padding: 20px 0;
+    margin: 40px 0 0 0;
+}
+
+.dashbaord .box .dashboard-boxes1 .icon {
+    margin: 0 auto;
+}
+
+.dashbaord .box .dashboard-boxes1 .icon i {
+    font-size: 35px;
+    background-color: #008000;
+    color: #f2f2f2;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.dashbaord .box .dashboard-boxes1 a {
+    color: #0d0d0d;
+    margin: 0 auto;
+}
+
+.dashbaord .box .dashboard-boxes1 a h5 {
+    padding: 5px 3px 0 3px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 36px;
+    margin: 0;
+    font-family: 'Baloo Chettan', cursive;
+}
+
+.dashbaord .box .dashboard-boxes1 a h5 small {
+    font-weight: 600;
+    font-size: 16px;
+    color: gray;
+    font-family: 'Roboto Slab', serif;
+}
+
+.dashbaord .box .dashboard-boxes1.primary:hover .icon i {
+    background-color: #a71d2a;
+}
+
+.dashbaord .box .dashboard-boxes1.primary .icon i {
+    background-color: #bd2130;
+}
+
+.dashbaord .box .dashboard-boxes1.success:hover .icon i {
+    background-color: #a17800;
+}
+
+.dashbaord .box .dashboard-boxes1.success .icon i {
+    background-color: #edb100;
+}
+
+.dashbaord .box .dashboard-boxes1.danger:hover .icon i {
+    background-color: #0056b3;
+}
+
+.dashbaord .box .dashboard-boxes1.danger .icon i {
+    background-color: #0062cc;
+}
+
+.dashbaord .box .dashboard-boxes1.warning:hover .icon i {
+    background-color: #a17800;
+}
+
+.dashbaord .box .dashboard-boxes1.warning .icon i {
+    background-color: #ba8b00;
+}
+
+.dashbaord .box .dashboard-boxes1.info:hover .icon i {
+    background-color: #b30000;
+}
+
+.dashbaord .box .dashboard-boxes1.info .icon i {
+    background-color: #ff3333;
+}
+
+.dashbaord .box .charts-section {
+    margin: 50px 30px 0 30px;
+}
+
+.dashbaord .box .charts-section canvas {
+    max-height: 600px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dashbaord .box .charts-section .canvas1 {
+    margin-bottom: 50px;
+}
+
+
+/* =====================================================
+    Dashboard Ends
+===================================================== */
+
+
+/* ****************************Dashboard Media Queries End Here************************** */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit
+}
+
+.h1,
+.h3,
+h3 {
+    font-size: 1.75rem
+}
+
+.h4,
+h4 {
+    font-size: 1.5rem
+}
+
+.h5,
+h5 {
+    font-size: 1.25rem
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:1200px) {
+    .container {
+        max-width: 1140px
+    }
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+.col {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px
+}
+
+.col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%
+}
+
+.col-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%
+}
+
+.col-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%
+}
+
+@media (min-width:1200px) {
+    .col-xl {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%
+    }
+}
