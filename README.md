@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `npm i` to install. 
 
-If error with @angular-devkit/build-angular
+If error with @angular-devkit/build-angular <br>
 Run <code>npm install --save-dev @angular-devkit/build-angular </code>
 
 <ul>
