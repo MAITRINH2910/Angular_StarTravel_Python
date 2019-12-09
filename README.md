@@ -3,7 +3,10 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 ## Build
 
-Run `npm i` to install angular. 
+Run `npm i` to install. 
+
+If error with @angular-devkit/build-angular
+Run <code>npm install --save-dev @angular-devkit/build-angular </code>
 
 <ul>
   <li> Import Library </li>
