@@ -4,11 +4,11 @@ import { SignUpInfo } from 'src/app/model/signup.model';
 import { AuthAccountService } from 'src/app/service/auth-account.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-register-owner',
+  templateUrl: './register-owner.component.html',
+  styleUrls: ['./register-owner.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterOwnerComponent implements OnInit {
   public loading = false;
   public submitted = false;
   public form: any = {};
@@ -16,9 +16,8 @@ export class RegisterComponent implements OnInit {
   public isSignUpFailed = false;
   public registerForm: FormGroup;
   public errorMessage = "";
-  public successMessage="";
-
   private response: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthAccountService   
@@ -48,7 +47,7 @@ export class RegisterComponent implements OnInit {
     this.signupInfo = new SignUpInfo(
       this.f.username.value,
       this.f.password.value,
-      "USER"
+      "HOTEL_OWNER"
     );
     console.log(this.signupInfo);
 
@@ -56,9 +55,7 @@ export class RegisterComponent implements OnInit {
       this.response = data;
       this.response = this.response.response;
       this.errorMessage = this.response.error;
-      if (this.response.id != null){
-        this.successMessage = "Register succesfully"
-      }
+      
     });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from "src/app/service/token-storage.service";
 import { AuthAccountService } from 'src/app/service/auth-account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -14,6 +15,7 @@ export class LayoutComponent implements OnInit {
   constructor(
     private tokenStorage: TokenStorageService, 
     private authService: AuthAccountService,
+    private router: Router
   ) {}
 
   ngOnInit() {    
@@ -28,6 +30,7 @@ export class LayoutComponent implements OnInit {
   
   logout() {
     this.authService.logout();
+    this.router.navigate(['home']);
   }
 }
 

@@ -11,7 +11,8 @@
                         <div id="package-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="item">
-                                    <a class="media-left fancybox-pop" href="{{property.img}}" style="width: 790px">
+                                    <a class="media-left fancybox-pop" style="width: 790px">
+                                        <!-- href="{{property.img}}"  -->
                                         <img class="media-object" src="{{property.img}}" alt="Image" />
                                     </a>
                                 </div>
@@ -57,18 +58,14 @@
                             </div>
                             <div class="reviewContent">
                                 <h3 class="reviewTitle">
-                                    Reviews (3)
-                                    <span>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    Reviews ({{reviewNumber}})
+                                    <span *ngIf="averageRating !=0">{{averageRating}}
+                    <i class="fa fa-star" aria-hidden="true"></i>                    
                   </span>
                                 </h3>
 
                                 <div class="reviewMedia">
-                                    <ul class="media-list">
+                                    <ul class="media-list" *ngFor="let item of feedback">
                                         <li class="media">
                                             <div class="media-left">
                                                 <a href="#">
@@ -76,83 +73,28 @@
                                                 </a>
                                             </div>
                                             <div class="media-body" style="margin-left: 80px">
-                                                <h5 class="media-heading">Jessica Brown</h5>
-                                                <span>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                        </span>
-                                                <p>
-                                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan totam rem ape riam
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="../../../assets/img/blog/comments-01.jpg" alt="Image" />
-                                                </a>
-                                            </div>
-                                            <div class="media-body" style="margin-left: 80px">
-                                                <h5 class="media-heading">Jessica Brown</h5>
-                                                <span>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </span>
-                                                <p>
-                                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan totam rem ape riam
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="../../../assets/img/blog/comments-03.jpg" alt="Image" />
-                                                </a>
-                                            </div>
-                                            <div class="media-body" style="margin-left: 80px">
-                                                <h5 class="media-heading">Jessica Brown</h5>
-                                                <span>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
-                          <i class="fa fa-star-0" aria-hidden="true"></i>
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </span>
-                                                <p>
-                                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudan totam rem ape riam
-                                                </p>
+                                                <h5 class="media-heading">{{item.username}}</h5>
+                                                <span>{{item.rating}}<i class="fa fa-star" aria-hidden="true"></i></span>
+                                                <p>{{item.content}}</p>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <form action="" method="POST" role="form" class="commentsForm">
+                                <form [formGroup]="formFeedback" (ngSubmit)="onSubmit()" class="commentsForm">
                                     <h3 class="reviewTitle">Leave your review</h3>
-                                    <p>
-                                        Want to Rate it?
-                                        <span>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star-o" aria-hidden="true"></i>
-                      <i class="fa fa-star-0" aria-hidden="true"></i>
-                      <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </span>
+                                    <p>Want to Rate it?
+                                        <span><b class="gridSizeValue">{{ ratingValue.value }} <i class="fa fa-star"></i></b>                            
+                                            <mat-slider style="width: 250px" #ratingValue (change)="rating($event)" step="0.3" min="1" max="10" [value]="ratingValue"></mat-slider>
+                                        </span>
                                     </p>
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="form-group">
-                                                <textarea class="form-control" rows="3" placeholder="Comment"></textarea>
+                                                <textarea class="form-control" rows="3" placeholder="Comment" formControlName="comment"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn buttonCustomPrimary">
-                    submit
-                  </button>
+                                    <button type="submit" class="btn buttonCustomPrimary">submit</button>
                                 </form>
                             </div>
                         </div>

@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Hotel } from "../model/hotel.model";
-import { url } from '../../app/common-api';
+import { url } from "../../app/common-api";
 
 @Injectable({
   providedIn: "root"
 })
 export class OwnerService {
   constructor(public http: HttpClient) {}
-  
+
   public addHouse(
     city: string,
     name: string,
@@ -16,7 +16,8 @@ export class OwnerService {
     img: string,
     address: string,
     rating: number,
-    price: number, headerConfig
+    price: number,
+    headerConfig
   ) {
     var obj = {
       city: city,
@@ -29,20 +30,44 @@ export class OwnerService {
     };
     return this.http.post<Hotel>(`${url}/hotels/add_hotel`, obj, headerConfig);
   }
- 
+
   public getOneHotel(id: string) {
     return this.http.get(`${url}/hotels/get_one_hotel/${id}`);
   }
 
   public getOneHotelOwner(id: string, headerConfig) {
-    return this.http.get(`${url}/hotels/get_one_hotel_owner/${id}`, headerConfig);
+    return this.http.get(
+      `${url}/hotels/get_one_hotel_owner/${id}`,
+      headerConfig
+    );
   }
 
-  public updateHotel(house: Hotel, headerConfig) {
-    return this.http.put(`${url}/hotels/update_hotel/${house.id}`, house, headerConfig);
-  } 
+  public updateHotel(
+    id: string,
+    name: string,
+    address: string,
+    city: string,
+    link: string,
+    img: string,
+    rating: number,
+    price: number,
+    status: string, 
+    headerConfig
+  ) {
+    var obj = {
+      name: name,
+      address: address,
+      city: city,
+      link: link,
+      img: img,
+      rating: rating,
+      price: price,
+      status: status
+    };
+    return this.http.put(`${url}/hotels/update_hotel/${id}`, obj, headerConfig);
+  }
 
-  public deleteHotel(id:string, headerConfig) {
+  public deleteHotel(id: string, headerConfig) {
     return this.http.delete(`${url}/hotels/delete_hotel/${id}`, headerConfig);
   }
 

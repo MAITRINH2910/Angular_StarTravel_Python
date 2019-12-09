@@ -6,11 +6,11 @@ import { AuthAccountService } from 'src/app/service/auth-account.service';
 import { AuthLoginInfo } from 'src/app/model/login.model';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-owner',
+  templateUrl: './login-owner.component.html',
+  styleUrls: ['./login-owner.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginOwnerComponent implements OnInit {
   public loginForm: FormGroup;
   public form: any = {};
   public isLoggedIn = false;
@@ -67,9 +67,15 @@ export class LoginComponent implements OnInit {
       if (this.response.role != null) {
         this.tokenStorage.saveToken(this.response.token);
         this.tokenStorage.saveUsername(this.response.username);
-        this.tokenStorage.saveAuthority(this.response.role);   
-      
-      }    
+        this.tokenStorage.saveAuthority(this.response.role);       
+      }
+
+      if (this.response.role == "ADMIN") {
+        this.router.navigate(["admin/estay"]);
+      } else if (this.response.role == "HOTEL_OWNER"){
+        this.router.navigate(["host"]);
+      } 
+    
     });
   }
 

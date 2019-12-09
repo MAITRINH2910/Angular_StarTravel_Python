@@ -30,6 +30,9 @@ import { EditProfileOwnerComponent } from './account-Owner/profile/edit-profile-
 import { ViewProfileOwnerComponent } from './account-Owner/profile/view-profile-owner/view-profile-owner.component';
 import { EditHotelComponent } from './account-Owner/hotel/edit-hotel/edit-hotel.component';
 import { RoleGuard } from './guard/role.guard';
+import { LoginOwnerComponent } from './auth/login-owner/login-owner.component';
+import { RegisterOwnerComponent } from './auth/register-owner/register-owner.component';
+import { LoginModalComponent } from './account-Guest/login-modal/login-modal.component';
 
 
 @NgModule({
@@ -57,7 +60,9 @@ import { RoleGuard } from './guard/role.guard';
     EditProfileOwnerComponent,
     ViewProfileOwnerComponent,
     EditHotelComponent,
-    
+    LoginOwnerComponent,
+    RegisterOwnerComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { RoleGuard } from './guard/role.guard';
     HttpClientModule
 
   ],
+  entryComponents: [LoginModalComponent],
   providers: [RoleGuard],
   bootstrap: [AppComponent]
 })

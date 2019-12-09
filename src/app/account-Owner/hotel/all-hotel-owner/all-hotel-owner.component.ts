@@ -23,7 +23,7 @@ export class AllHotelOwnerComponent implements OnInit {
     "name",
     "address",
     "city",
-    "hotel_owner",
+    "img",
     "price",
     "rating",
     "status",

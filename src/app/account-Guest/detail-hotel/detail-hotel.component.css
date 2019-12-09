@@ -778,7 +778,7 @@ a:focus {
 
 .destinations .media-left {
     display: inline-block;
-    float: left
+    /* float: left */
 }
 
 @media(max-width:767px) {
@@ -885,7 +885,7 @@ a:focus {
         margin-bottom: 5px;
         width: 33%;
         display: inline-block;
-        float: left
+        /* float: left */
     }
 }
 
@@ -1352,7 +1352,7 @@ header {
 .bodyLeft,
 .bodyRight {
     display: inline-block;
-    float: left;
+    /* float: left; */
     width: 70%
 }
 

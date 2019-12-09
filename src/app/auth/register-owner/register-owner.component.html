@@ -59,13 +59,11 @@
                             Register
                         </button>
                         <div *ngIf="errorMessage" class="alert alert-danger mt-3 mb-0">{{errorMessage}}</div>
-                        <div *ngIf="successMessage" class="alert alert-success mt-3 mb-0">{{successMessage}}</div>
-
                     </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Already have an account?<a [routerLink]="['/login']" routerLinkActive="router-link-active">Sign In</a>
+                        Already have an account?<a [routerLink]="['/login-owner']" routerLinkActive="router-link-active">Sign In</a>
                     </div>
                     <div class="d-flex justify-content-center">
                         <a href="#">Forgot your password?</a>

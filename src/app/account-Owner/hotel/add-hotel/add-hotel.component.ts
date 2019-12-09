@@ -105,7 +105,6 @@ export class AddHotelComponent implements OnInit {
     this.hotel.price = this.formAddHouse.value.price;
     this.hotel.rating = this.formAddHouse.value.rating;
     this.hotel.img = this.formAddHouse.value.img;
-    console.log(this.hotel.city);
     this.ownerService
       .addHouse(
         this.hotel.city,
