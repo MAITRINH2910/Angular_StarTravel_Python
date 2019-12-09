@@ -9,7 +9,7 @@ Run `npm i` to install angular.
   <li> Import Library </li>
   <h6>1. Angular Material</h6>
   <pre>
-    <code>ng add @angular/material</code>
+    `ng add @angular/material`
   </pre>
   <p>Choose a prebuilt theme name, or "custom" for a custom theme: (Use arrow keys)</p>
   <p>=>Indigo/Pink        [ Preview: https://material.angular.io?theme=indigo-pink ]</p>
@@ -18,7 +18,7 @@ Run `npm i` to install angular.
   
    <h6>2. Decode jwt</h6>
   <pre>
-    <code>npm install jwt-decode</code>
+    `npm install jwt-decode`
   </pre>
 </ul>
 
