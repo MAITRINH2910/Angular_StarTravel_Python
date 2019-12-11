@@ -280,8 +280,8 @@ h5 {
 .col-sm-12 {
     position: relative;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px
+    /* padding-right: 15px;
+    padding-left: 15px */
 }
 
 .col {

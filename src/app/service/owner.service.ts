@@ -28,7 +28,7 @@ export class OwnerService {
       rating: rating,
       price: price
     };
-    return this.http.post<Hotel>(`${url}/hotels/add_hotel`, obj, headerConfig);
+    return this.http.post(`${url}/hotels/add_hotel`, obj, headerConfig);
   }
 
   public getOneHotel(id: string) {

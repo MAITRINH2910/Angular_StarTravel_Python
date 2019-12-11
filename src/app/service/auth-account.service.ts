@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { url, httpOptions } from '../../app/common-api';
-import { TokenStorageService } from "./token-storage.service";
 import decode from "jwt-decode";
 import { Router } from "@angular/router";
 import { SignUpInfo } from '../model/signup.model';
@@ -56,7 +55,7 @@ export class AuthAccountService {
 
   logout(): void {
     this.clear();
-    this._router.navigate(["login"]);
+    this._router.navigate(["login-owner"]);
   }
 
   decode() {

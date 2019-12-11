@@ -48,22 +48,12 @@ export class LoginOwnerComponent implements OnInit {
       this.f.username.value,
       this.f.password.value
     );
-    console.log(this.loginInfo);
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    if (this.form.username == null || this.form.password == null) {
-      this.errorMessage;
-      this.loading = false;
-    }
+  
     this.authService.attemptAuth(this.loginInfo).subscribe(data => {
       this.response = data;
       this.response = this.response.response;
+      this.errorMessage = this.response.error;
+
       if (this.response.role != null) {
         this.tokenStorage.saveToken(this.response.token);
         this.tokenStorage.saveUsername(this.response.username);

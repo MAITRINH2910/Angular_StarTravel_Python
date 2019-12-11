@@ -7,6 +7,8 @@ import { HttpHeaders } from "@angular/common/http";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { LoginModalComponent } from "../login-modal/login-modal.component";
+import { TokenStorageService } from "src/app/service/token-storage.service";
+import { RemindFormReviewComponent } from "../remind-form-review/remind-form-review.component";
 
 @Component({
   selector: "app-detail-hotel",
@@ -24,6 +26,8 @@ export class DetailHotelComponent implements OnInit {
   public sum = 0;
   public ratingValue: number;
   public formFeedback: FormGroup;
+  public authority: string;
+  public role: string;
 
   headerConfig = {
     headers: new HttpHeaders({
@@ -36,7 +40,8 @@ export class DetailHotelComponent implements OnInit {
     private activatedRouteService: ActivatedRoute,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private tokenStorage: TokenStorageService
   ) {}
   rating(event) {
     this.ratingValue = event.value;
@@ -56,11 +61,14 @@ export class DetailHotelComponent implements OnInit {
         if (this.feedback.length != 0) {
           this.averageRating = Math.ceil(this.sum / this.feedback.length);
         } else {
-          this.averageRating = null
+          this.averageRating = null;
         }
       });
     });
     this.form();
+    if (window.localStorage.getItem("AuthToken") != null) {
+      this.role = this.tokenStorage.getAuthority();
+    }
   }
 
   getHotel() {
@@ -87,28 +95,36 @@ export class DetailHotelComponent implements OnInit {
     });
   }
   onSubmit() {
-    if (window.localStorage.getItem("AuthToken") == null) {
-      // alert("Please login to leave your comment");
-      const dialogRef = this.dialog.open(LoginModalComponent, {
-        width: "500px"
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log("The dialog was closed");
+    if (
+      window.localStorage.getItem("AuthToken") == null ||
+      this.role != "USER"
+    ) {
+      this.dialog.open(LoginModalComponent);
+    } 
+    if (
+      this.ratingValue != undefined &&
+      this.formFeedback.value.comment != ""
+    ) {
+      this.activatedRouteService.params.subscribe(data => {
+        let hotel_id = data.id;
+        this.userService
+          .addFeedback(
+            hotel_id,
+            this.formFeedback.value.comment,
+            this.ratingValue,
+            this.headerConfig
+          )
+          .subscribe(data => {
+            window.location.reload();
+          });
       });
     }
-    this.activatedRouteService.params.subscribe(data => {
-      let hotel_id = data.id;
-      this.userService
-        .addFeedback(
-          hotel_id,
-          this.formFeedback.value.comment,
-          this.ratingValue,
-          this.headerConfig
-        )
-        .subscribe(data => {
-          console.log(data);
-        });
-    });
+    if (
+      this.role == "USER" &&
+      this.ratingValue == undefined &&
+      this.formFeedback.value.comment == ""
+    ) {
+      this.dialog.open(RemindFormReviewComponent);
+    }
   }
 }

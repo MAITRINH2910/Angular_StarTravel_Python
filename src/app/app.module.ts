@@ -33,6 +33,8 @@ import { RoleGuard } from './guard/role.guard';
 import { LoginOwnerComponent } from './auth/login-owner/login-owner.component';
 import { RegisterOwnerComponent } from './auth/register-owner/register-owner.component';
 import { LoginModalComponent } from './account-Guest/login-modal/login-modal.component';
+import { DeleteHotelComponent } from './account-Owner/delete-hotel/delete-hotel.component';
+import { RemindFormReviewComponent } from './account-Guest/remind-form-review/remind-form-review.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { LoginModalComponent } from './account-Guest/login-modal/login-modal.com
     EditHotelComponent,
     LoginOwnerComponent,
     RegisterOwnerComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    DeleteHotelComponent,
+    RemindFormReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,7 @@ import { LoginModalComponent } from './account-Guest/login-modal/login-modal.com
     HttpClientModule
 
   ],
-  entryComponents: [LoginModalComponent],
+  entryComponents: [LoginModalComponent, DeleteHotelComponent, RemindFormReviewComponent],
   providers: [RoleGuard],
   bootstrap: [AppComponent]
 })

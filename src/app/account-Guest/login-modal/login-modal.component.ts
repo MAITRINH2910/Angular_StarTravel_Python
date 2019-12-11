@@ -1,23 +1,21 @@
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Inject } from '@angular/core';  
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Inject } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { TokenStorageService } from "src/app/service/token-storage.service";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthAccountService } from 'src/app/service/auth-account.service';
-import { AuthLoginInfo } from 'src/app/model/login.model';
+import { AuthAccountService } from "src/app/service/auth-account.service";
+import { AuthLoginInfo } from "src/app/model/login.model";
 export interface DialogData {
   animal: string;
   name: string;
 }
 @Component({
-  selector: 'app-login-modal',
-  templateUrl: './login-modal.component.html',
-  styleUrls: ['./login-modal.component.css']
+  selector: "app-login-modal",
+  templateUrl: "./login-modal.component.html",
+  styleUrls: ["./login-modal.component.css"]
 })
-export class LoginModalComponent implements OnInit{
-
-
+export class LoginModalComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -39,8 +37,9 @@ export class LoginModalComponent implements OnInit{
     private authService: AuthAccountService,
     private tokenStorage: TokenStorageService,
     private router: Router,
-    public dialogRef: MatDialogRef<LoginModalComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
+    public dialogRef: MatDialogRef<LoginModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -61,19 +60,6 @@ export class LoginModalComponent implements OnInit{
       this.f.username.value,
       this.f.password.value
     );
-    console.log(this.loginInfo);
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    if (this.form.username == null || this.form.password == null) {
-      this.errorMessage;
-      this.loading = false;
-    }
     this.authService.attemptAuth(this.loginInfo).subscribe(data => {
       this.response = data;
       this.response = this.response.response;
@@ -81,14 +67,15 @@ export class LoginModalComponent implements OnInit{
       if (this.response.role != null) {
         this.tokenStorage.saveToken(this.response.token);
         this.tokenStorage.saveUsername(this.response.username);
-        this.tokenStorage.saveAuthority(this.response.role);   
-        this.successMessage = "Succesfully Login";
-
-      }    
+        this.tokenStorage.saveAuthority(this.response.role);
+        // this.successMessage = "Succesfully Login";
+        this.dialogRef.close(true);
+        window.location.reload();
+      }
     });
+   
   }
-
-  reloadPage() {
-    window.location.reload();
+  onClick(){
+    this.dialogRef.close(true);
   }
 }

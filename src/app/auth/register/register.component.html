@@ -3,7 +3,6 @@
 
 <head>
     <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
 
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
@@ -24,34 +23,30 @@
                     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i
-                  ></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username" />
                             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                <div *ngIf="f.username.errors.required">Username is required</div>
+                                <div *ngIf="f.username.errors['required']">Username is required</div>
                             </div>
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i
-                  ></span>
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors['required']">Password is required</div>
                             </div>
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i
-                  ></span>
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" formControlName="cfPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cfPassword.errors }" placeholder="Confirm Password" />
                             <div *ngIf="submitted && f.cfPassword.errors" class="invalid-feedback">
-                                <div *ngIf="f.cfPassword.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.cfPassword.errors['required']">Confirm Password is required</div>
                                 <div *ngIf="registerForm.get('cfPassword').errors['mustMatch']">Confirm Password must match</div>
-
                             </div>
                         </div>
                         <button [disabled]="loading" class="btn btn-primary">
@@ -60,7 +55,6 @@
                         </button>
                         <div *ngIf="errorMessage" class="alert alert-danger mt-3 mb-0">{{errorMessage}}</div>
                         <div *ngIf="successMessage" class="alert alert-success mt-3 mb-0">{{successMessage}}</div>
-
                     </form>
                 </div>
                 <div class="card-footer">

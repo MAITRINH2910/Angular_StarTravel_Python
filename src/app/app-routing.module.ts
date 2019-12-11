@@ -46,7 +46,7 @@ const routes: Routes = [
         component: HomepageComponent
       },
       {
-        path: "city",
+        path: "top-hotel",
         component: TopHotelComponent
       },
       {

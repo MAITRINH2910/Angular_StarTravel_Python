@@ -23,22 +23,20 @@
                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i
-                  ></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username" />
                             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                                <div *ngIf="f.username.errors.required">Username is required</div>
+                                <div *ngIf="f.username.errors['required']">Username is required</div>
                             </div>
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i
-                  ></span>
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" />
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors['required']">Password is required</div>
                             </div>
                         </div>
                         <button [disabled]="loading" class="btn btn-primary">

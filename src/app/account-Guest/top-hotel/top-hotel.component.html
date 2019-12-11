@@ -37,11 +37,11 @@
                                                     <div>
                                                         <span>Price: </span><b class="gridSizeValue">{{ priceValue.value | currency: "VND" }}</b>
                                                     </div>
-                                                    <mat-slider #priceValue (change)="price($event)" step="500000" min="100000" max="2000000" [value]="priceValue"></mat-slider>
+                                                    <mat-slider #priceValue (change)="price($event)" step="100000" min="100000" max="2000000" [value]="priceValue"></mat-slider>
                                                 </div>
                                                 <div class="form-check col-sm-12">
                                                     <label formArrayName="listFeature" *ngFor="
-                              let feature of form.controls.listFeature.controls;
+                              let feature of form['controls'].listFeature.controls;
                               let i = index
                             ">
                             <input type="checkbox" [formControlName]="i" />

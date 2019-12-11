@@ -2,13 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { TokenStorageService } from "src/app/service/token-storage.service";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthAccountService } from 'src/app/service/auth-account.service';
-import { AuthLoginInfo } from 'src/app/model/login.model';
+import { AuthAccountService } from "src/app/service/auth-account.service";
+import { AuthLoginInfo } from "src/app/model/login.model";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
@@ -48,32 +48,17 @@ export class LoginComponent implements OnInit {
       this.f.username.value,
       this.f.password.value
     );
-    console.log(this.loginInfo);
-    this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    if (this.form.username == null || this.form.password == null) {
-      this.errorMessage;
-      this.loading = false;
-    }
     this.authService.attemptAuth(this.loginInfo).subscribe(data => {
       this.response = data;
       this.response = this.response.response;
+      this.errorMessage = this.response.error;
       if (this.response.role != null) {
         this.tokenStorage.saveToken(this.response.token);
         this.tokenStorage.saveUsername(this.response.username);
-        this.tokenStorage.saveAuthority(this.response.role);   
-      
-      }    
+        this.tokenStorage.saveAuthority(this.response.role);
+        this.router.navigate(["home"]);
+      }
     });
-  }
-
-  reloadPage() {
-    window.location.reload();
   }
 }

@@ -1,9 +1,7 @@
-/* Made with love by Mutiullah Samim*/
-
 @import url('https://fonts.googleapis.com/css?family=Numans');
 .shadow-right {
     height: 50px;
-    margin: 10px;
+    /* margin: 10px; */
     background-color: black;
     -moz-box-shadow: 3px 3px 5px 0px #666;
     -webkit-box-shadow: 3px 3px 5px 0px #666;

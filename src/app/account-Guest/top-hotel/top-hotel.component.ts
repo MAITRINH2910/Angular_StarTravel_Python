@@ -56,9 +56,7 @@ export class TopHotelComponent implements OnInit {
     this.listFeature = this.guestService.listFeature;
     this.topHotel = this.guestService.topHotel;
     this.city = this.guestService.city;
-    this.rating(event);
     this.ratingValue = this.guestService.ratingValue;
-    this.price(event);
     this.priceValue = this.guestService.priceValue;
   }
 
@@ -67,7 +65,10 @@ export class TopHotelComponent implements OnInit {
     this.selectedListFeatureIds = this.form.value.listFeature
       .map((v, i) => (v ? this.listFeature[i] : null))
       .filter(v => v !== null);
-
+    if (this.ratingValue == undefined || this.priceValue == undefined){
+      this.ratingValue=0;
+      this.priceValue=0;
+    }
     this.predictedHotel = await this.guestService
       .getPredictedHotelByFeature(
         this.city,

@@ -43,15 +43,15 @@
                                 <div class="form-row">
                                     <div class="col-md">
                                         <div class="form-group">
-                                            <label for="to" class="">Name</label>
-                                            <input type="text" class="form-control" formControlName="name" />
+                                            <label class="control-label required">Name</label>
+                                            <input type="text" class="form-control" formControlName="name" required />
                                             <div *ngIf="submitted; else nottitle">
-                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.name.errors?.required||formAddHouse.controls.name.dirty
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.name.hasError('required')||formAddHouse.controls.name.dirty
                                                        && formAddHouse.controls.name.invalid
                                                        ||formAddHouse.controls.name.touched">
-                                                    <div *ngIf="formAddHouse.controls.name.errors?.required; else enter5">Cần điền vào trường này!</div>
+                                                    <div *ngIf="formAddHouse.controls.name.hasError('required'); else enter5">This field is required!</div>
                                                     <ng-template #enter5>
-                                                        <div *ngIf="formAddHouse.controls.name.hasError('whitespace')">Cần điền vào trường này!</div>
+                                                        <div *ngIf="formAddHouse.controls.name.hasError('whitespace')">This field is required!</div>
                                                     </ng-template>
                                                 </div>
                                             </div>
@@ -59,9 +59,9 @@
                                             <ng-template #nottitle>
                                                 <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.name.dirty && formAddHouse.controls.name.invalid 
                                                       ||formAddHouse.controls.name.touched">
-                                                    <div *ngIf="formAddHouse.controls.name.errors?.required; else enter5">Cần điền vào trường này!</div>
+                                                    <div *ngIf="formAddHouse.controls.name.hasError('required'); else enter5">This field is required!</div>
                                                     <ng-template #enter5>
-                                                        <div *ngIf="formAddHouse.controls.name.hasError('whitespace')">Cần điền vào trường này!</div>
+                                                        <div *ngIf="formAddHouse.controls.name.hasError('whitespace')">This field is required!</div>
                                                     </ng-template>
                                                 </div>
                                             </ng-template>
@@ -74,25 +74,25 @@
                                 <div class="form-row">
                                     <div class="col-md">
                                         <div class="form-group">
-                                            <label for="to1" class="">Address</label>
-                                            <input type="text" class="form-control" formControlName="address" id="to1" />
-                                            <div *ngIf="submitted; else nottitle">
-                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.address.errors?.required||formAddHouse.controls.address.dirty
+                                            <label class="">Address</label>
+                                            <input type="text" class="form-control" formControlName="address" required />
+                                            <div *ngIf="submitted; else notaddress">
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.address.hasError('required')||formAddHouse.controls.address.dirty
                                                        && formAddHouse.controls.address.invalid
                                                        ||formAddHouse.controls.address.touched">
-                                                    <div *ngIf="formAddHouse.controls.address.errors?.required; else enter5">Cần điền vào trường này!</div>
-                                                    <ng-template #enter5>
-                                                        <div *ngIf="formAddHouse.controls.address.hasError('whitespace')">Cần điền vào trường này!</div>
+                                                    <div *ngIf="formAddHouse.controls.address.hasError('required'); else address">This field is required!</div>
+                                                    <ng-template #address>
+                                                        <div *ngIf="formAddHouse.controls.address.hasError('whitespace')">This field is required!</div>
                                                     </ng-template>
                                                 </div>
                                             </div>
 
-                                            <ng-template #nottitle>
+                                            <ng-template #notaddress>
                                                 <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.address.dirty && formAddHouse.controls.address.invalid 
                                                       ||formAddHouse.controls.address.touched">
-                                                    <div *ngIf="formAddHouse.controls.address.errors?.required; else enter5">Cần điền vào trường này!</div>
-                                                    <ng-template #enter5>
-                                                        <div *ngIf="formAddHouse.controls.address.hasError('whitespace')">Cần điền vào trường này!</div>
+                                                    <div *ngIf="formAddHouse.controls.address.hasError('required'); else address">This field is required!</div>
+                                                    <ng-template #address>
+                                                        <div *ngIf="formAddHouse.controls.address.hasError('whitespace')">This field is required!</div>
                                                     </ng-template>
                                                 </div>
                                             </ng-template>
@@ -104,22 +104,35 @@
                                 <!-- end form-row -->
                                 <div class="form-row">
                                     <div class="col-md">
-                                        <!-- <div class="form-group">
-                                            <label for="to2" class="">City</label>
-                                            <input type="text" class="form-control" formControlName="city" id="to2" />
-                                       
-                                        </div> -->
                                         <div class="form-group">
-                                            <label for="to2" class="">City</label>
-                                            <mat-form-field class="example-full-width" style=" margin-left: 160px;
+                                            <label class="">City</label>
+                                            <mat-form-field class="example-full-width" style=" margin-left: 170px;
                                             margin-top: -8px;">
-                                                <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" formControlName="city" />
+                                                <input type="text" required matInput [formControl]="myControl" [matAutocomplete]="auto" formControlName="city" style="padding-left: 10px;" />
                                                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
                                                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                                         {{ option }}
                                                     </mat-option>
                                                 </mat-autocomplete>
                                             </mat-form-field>
+
+                                            <div *ngIf="submitted; else notcity">
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.city.hasError('required')||formAddHouse.controls.city.dirty
+                                                       && formAddHouse.controls.city.invalid
+                                                       ||formAddHouse.controls.city.touched">
+                                                    <div *ngIf="formAddHouse.controls.city.hasError('required'); else city">This field is required!</div>
+                                                    <ng-template #city>
+                                                        <div *ngIf="formAddHouse.controls.city.hasError('whitespace')">This field is required!</div>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+
+                                            <ng-template #notcity>
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.city.dirty && formAddHouse.controls.city.invalid 
+                                                      ||formAddHouse.controls.city.touched">
+                                                    <div *ngIf="formAddHouse.controls.city.hasError('required')">This field is required!</div>
+                                                </div>
+                                            </ng-template>
                                         </div>
                                         <!-- end form-group -->
                                     </div>
@@ -128,8 +141,25 @@
                                 <div class="form-row">
                                     <div class="col-md">
                                         <div class="form-group">
-                                            <label for="to3" class="">Price</label>
-                                            <input type="text" class="form-control" formControlName="price" id="to3" />
+                                            <label class="control-label required">Price</label>
+                                            <input type="number" class="form-control" formControlName="price" required min="100000" max="5000000" />
+                                            <div *ngIf="submitted; else notprice">
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.price.hasError('required')||formAddHouse.controls.price.dirty
+                                                       && formAddHouse.controls.price.invalid
+                                                       ||formAddHouse.controls.price.touched">
+                                                    <div *ngIf="formAddHouse.controls.price.hasError('required')">This field is required!</div>
+                                                    <div *ngIf="formAddHouse.controls.price.hasError('pattern')"> 100.000VND - 9.999.999VND </div>
+                                                </div>
+                                            </div>
+
+                                            <ng-template #notprice>
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.price.dirty && formAddHouse.controls.price.invalid 
+                                                      ||formAddHouse.controls.price.touched">
+                                                    <div *ngIf="formAddHouse.controls.price.hasError('required'); else price">This field is required!</div>
+                                                    <div *ngIf="formAddHouse.controls.price.hasError('pattern')">100.000VND - 9.000.000VND </div>
+                                                </div>
+                                            </ng-template>
+
                                         </div>
                                         <!-- end form-group -->
                                     </div>
@@ -138,8 +168,8 @@
                                 <div class="form-row">
                                     <div class="col-md">
                                         <div class="form-group">
-                                            <label for="to2" class="">Link Image</label>
-                                            <input type="text" class="form-control" formControlName="img" id="to2" />
+                                            <label class="">Link Image</label>
+                                            <input type="text" class="form-control" formControlName="img" />
                                         </div>
                                         <!-- end form-group -->
                                     </div>
@@ -149,21 +179,42 @@
                                 <div class="form-row">
                                     <div class="col-md">
                                         <div class="form-group">
-                                            <label for="to2" class="">Rating</label>
-                                            <input type="text" class="form-control" formControlName="rating" id="to2" />
+                                            <label class="control-label required">Rating</label>
+                                            <input type="number" class="form-control" formControlName="rating" required min="1" max="10" />
+                                            <div *ngIf="submitted; else notrating">
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.rating.hasError('required')||formAddHouse.controls.rating.dirty
+                                                       && formAddHouse.controls.rating.invalid
+                                                       ||formAddHouse.controls.rating.touched">
+                                                    <div *ngIf="formAddHouse.controls.rating.hasError('required'); else rating">This field is required!</div>
+                                                    <div *ngIf="formAddHouse.controls.rating.hasError('pattern')">Rating from 1 to 10</div>
+                                                </div>
+                                            </div>
+                                            <ng-template #notrating>
+                                                <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.rating.dirty && formAddHouse.controls.rating.invalid 
+                                                      ||formAddHouse.controls.rating.touched">
+                                                    <div *ngIf="formAddHouse.controls.rating.hasError('required'); else rating">This field is required!</div>
+                                                    <div *ngIf="formAddHouse.controls.rating.hasError('pattern')">Rating from 1 to 10</div>
+                                                </div>
+                                            </ng-template>
                                         </div>
                                         <!-- end form-group -->
                                     </div>
                                     <!-- end column -->
                                 </div>
                                 <!-- end form-group -->
+                                <div *ngIf="errorMessage" class="alert-danger" style="    background: #ff000094;
+                                text-align: center;
+                                height: 30px;
+                                width: 165px;
+                                padding: 5px;">{{errorMessage}}</div>
+
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <button type="submit" class="btn">Submit</button>
+                                        <button type="submit" class="btn" style="font-size: large">Submit</button>
                                     </li>
-                                    <li class="list-inline-item">
+                                    <!-- <li class="list-inline-item">
                                         <button type="submit" class="btn">Cancel</button>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <!-- end column -->

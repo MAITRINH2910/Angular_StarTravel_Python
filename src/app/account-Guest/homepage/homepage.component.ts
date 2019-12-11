@@ -64,7 +64,7 @@ export class HomepageComponent implements OnInit {
       .toPromise();
     this.topHotel = this.topHotel.response;
 
-    this.routerService.navigate(["/city"]);
+    this.routerService.navigate(["/top-hotel"]);
   }
   ngOnDestroy() {
     this.guestService.listFeature = this.listFeature;

@@ -16,6 +16,7 @@ export class RegisterOwnerComponent implements OnInit {
   public isSignUpFailed = false;
   public registerForm: FormGroup;
   public errorMessage = "";
+  public successMessage = "";
   private response: any;
 
   constructor(
@@ -55,7 +56,9 @@ export class RegisterOwnerComponent implements OnInit {
       this.response = data;
       this.response = this.response.response;
       this.errorMessage = this.response.error;
-      
+      if (this.response.id != null){
+        this.successMessage = "Register succesfully"
+      }
     });
   }
 }

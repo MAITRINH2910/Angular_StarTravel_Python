@@ -29,7 +29,7 @@ export class EditHotelComponent implements OnInit {
   public myControl = new FormControl();
   public filteredOptions: Observable<string[]>;
   private temp: any;
-  public message: string;
+  public errorMessage: string;
   public submitted = false;
   public img: string;
   constructor(
@@ -56,6 +56,13 @@ export class EditHotelComponent implements OnInit {
       map(value => this._filter(value))
     );
   }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || "").trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { whitespace: true };
+  }
+
   // Filter input
   public _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -75,21 +82,19 @@ export class EditHotelComponent implements OnInit {
         this.hotel = result;
         this.property = this.hotel.response.detail_hotels;
         this.utilities = this.hotel.response.utilities;
-        console.log(this.property);
         if (this.property.img == "") {
           this.img = "null";
         } else {
           this.img = this.property.img;
         }
-        console.log(this.img);
         this.formEdit = this.formBuilder.group({
           name: [this.property.name, [Validators.required]],
           address: [this.property.address, [Validators.required]],
-          city: ["", [Validators.required]],
+          city: [this.property.city, [Validators.required]],
           img: [this.img, [Validators.required]],
           rating: [
             this.property.rating,
-            [Validators.required, Validators.pattern("^[1-9]{1}[0-9]*")]
+            [Validators.required, Validators.pattern("^([1-9]|10)$")]
           ],
           price: [
             this.property.price,
@@ -103,22 +108,21 @@ export class EditHotelComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.activatedRouteService.params.subscribe(data => {
-      let id = data.id;
       this.hotel.name = this.formEdit.value.name;
       this.hotel.address = this.formEdit.value.address;
       this.hotel.city = this.city;
-      this.hotel.link = null;
+      this.hotel.link = "";
       this.hotel.price = this.formEdit.value.price;
       this.hotel.rating = this.formEdit.value.rating;
       this.hotel.img = this.formEdit.value.img;
-      console.log(this.hotel.response.detail_hotels.status);
+
       this.ownerService
         .updateHotel(
           this.hotel.response.detail_hotels.id,
           this.hotel.name,
           this.hotel.address,
-          this.hotel.city,
-          null,
+          this.hotel.response.detail_hotels.city,
+          this.hotel.link,
           this.hotel.img,
           this.hotel.rating,
           this.hotel.price,
@@ -127,9 +131,13 @@ export class EditHotelComponent implements OnInit {
         )
         .subscribe(data => {
           this.temp = data;
-          this.message = this.temp.response.success;
-          console.log(data);
-          this.routerService.navigate(["host/hotel/all-hotel"]);
+          console.log(data)
+          if (this.temp.status == 400) {
+            this.errorMessage = this.temp.response.error;
+          }
+          if (this.temp.status == 200) {
+            this.routerService.navigate(["host/hotel/all-hotel"]);
+          }
         });
     });
   }

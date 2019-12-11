@@ -10,13 +10,13 @@ import { Hotel } from "src/app/model/hotel.model";
 import { HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import { OwnerService } from 'src/app/service/owner.service';
-import { GuestService } from 'src/app/service/guest.service';
+import { OwnerService } from "src/app/service/owner.service";
+import { GuestService } from "src/app/service/guest.service";
 
 @Component({
-  selector: 'app-add-hotel',
-  templateUrl: './add-hotel.component.html',
-  styleUrls: ['./add-hotel.component.css']
+  selector: "app-add-hotel",
+  templateUrl: "./add-hotel.component.html",
+  styleUrls: ["./add-hotel.component.css"]
 })
 export class AddHotelComponent implements OnInit {
   public submitted = false;
@@ -35,7 +35,7 @@ export class AddHotelComponent implements OnInit {
   public myControl = new FormControl();
   public filteredOptions: Observable<string[]>;
   private temp: any;
-  public message: string;
+  public errorMessage: string;
   constructor(
     private formBuilder: FormBuilder,
     private ownerService: OwnerService,
@@ -82,16 +82,15 @@ export class AddHotelComponent implements OnInit {
 
   createForm() {
     this.formAddHouse = this.formBuilder.group({
-      city: ["", [Validators.required, this.noWhitespaceValidator]],
-      name: ["", [Validators.required]],
-      link: [""],
-      img: ["", [Validators.required]],
-      address: ["", [Validators.required, this.noWhitespaceValidator]],
-      rating: [
+      name: ["", Validators.required],
+      address: ["", Validators.required],
+      city: ["", Validators.required],
+      img: [""],
+      rating: ["", [Validators.required, Validators.pattern("^([1-9]|10)$")]],
+      price: [
         "",
-        [Validators.required, Validators.pattern("^[1-9]{1}[0-9]*")]
-      ],
-      price: ["", [Validators.required, Validators.pattern("^[1-9]{1}[0-9]*")]]
+        [Validators.required, Validators.pattern("[1-9]{1}[0-9]{5,6}")]
+      ]
     });
   }
 
@@ -101,25 +100,35 @@ export class AddHotelComponent implements OnInit {
     this.hotel.name = this.formAddHouse.value.name;
     this.hotel.address = this.formAddHouse.value.address;
     this.hotel.city = this.city;
-    this.hotel.link = null;
+    this.hotel.link = "";
     this.hotel.price = this.formAddHouse.value.price;
     this.hotel.rating = this.formAddHouse.value.rating;
     this.hotel.img = this.formAddHouse.value.img;
-    this.ownerService
-      .addHouse(
-        this.hotel.city,
-        this.hotel.name,
-        null,
-        this.hotel.img,
-        this.hotel.address,
-        this.hotel.rating,
-        this.hotel.price,
-        this.headerConfig
-      )
-      .subscribe(data => {
-        this.temp = data;
-        this.message = this.temp.response.success;
-        this.routerService.navigate(["host/hotel/all-hotel"]);
-      });
+    if (
+      this.hotel.name != null &&
+      this.hotel.address != null &&
+      this.hotel.city != null &&
+      this.hotel.price != null && this.hotel.price > 100000 && this.hotel.price < 9999999 &&
+      this.hotel.rating != null && this.hotel.rating > 0 && this.hotel.rating < 11
+    ) {
+      this.ownerService
+        .addHouse(
+          this.hotel.city,
+          this.hotel.name,
+          this.hotel.link,
+          this.hotel.img,
+          this.hotel.address,
+          this.hotel.rating,
+          this.hotel.price,
+          this.headerConfig
+        )
+        .subscribe(data => {
+          this.temp = data;
+          this.errorMessage = this.temp.response.error;
+          if (this.errorMessage == null) {
+            this.routerService.navigate(["host/hotel/all-hotel"]);
+          }
+        });
+    }
   }
 }
