@@ -1,14 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { SignUpInfo } from 'src/app/model/signup.model';
-import { AuthAccountService } from 'src/app/service/auth-account.service';
+import { SignUpInfo } from "src/app/model/signup.model";
+import { AuthAccountService } from "src/app/service/auth-account.service";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
-  selector: 'app-register-owner',
-  templateUrl: './register-owner.component.html',
-  styleUrls: ['./register-owner.component.css']
+  selector: "app-register-modal",
+  templateUrl: "./register-modal.component.html",
+  styleUrls: ["./register-modal.component.css"]
 })
-export class RegisterOwnerComponent implements OnInit {
+export class RegisterModalComponent implements OnInit {
   public loading = false;
   public submitted = false;
   public form: any = {};
@@ -17,22 +19,27 @@ export class RegisterOwnerComponent implements OnInit {
   public registerForm: FormGroup;
   public errorMessage = "";
   public successMessage = "";
-  private response: any;
 
+  private response: any;
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthAccountService   
+    private authService: AuthAccountService,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<RegisterModalComponent>,
+
   ) {}
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required],//Validators.minLength(6)
-      cfPassword: ["", Validators.required]
-    },
-    {
-      validator: MustMatch("password", "cfPassword")
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ["", Validators.required],
+        password: ["", Validators.required], //Validators.minLength(6)
+        cfPassword: ["", Validators.required]
+      },
+      {
+        validator: MustMatch("password", "cfPassword")
+      }
+    );
   }
   get f() {
     return this.registerForm.controls;
@@ -43,17 +50,24 @@ export class RegisterOwnerComponent implements OnInit {
     this.signupInfo = new SignUpInfo(
       this.f.username.value,
       this.f.password.value,
-      "HOTEL_OWNER"
+      "USER"
     );
 
     this.authService.signUp(this.signupInfo).subscribe(data => {
       this.response = data;
       this.response = this.response.response;
       this.errorMessage = this.response.error;
+   
       if (this.errorMessage == null){
-        this.successMessage = "Register succesfully"
+        this.successMessage = "Register succesfully";
       }
     });
+  }
+  onSignIn() {
+    {
+      this.dialog.open(LoginModalComponent);
+      this.dialogRef.close(true);
+    }
   }
 }
 

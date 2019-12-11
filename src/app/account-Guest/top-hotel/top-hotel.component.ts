@@ -7,12 +7,17 @@ import {
   ValidatorFn
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { GuestService } from 'src/app/service/guest.service';
+import { GuestService } from "src/app/service/guest.service";
+import { map, startWith } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { AdminService } from "src/app/service/admin.service";
+import { BookingModalComponent } from "../booking-modal/booking-modal.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-top-hotel',
-  templateUrl: './top-hotel.component.html',
-  styleUrls: ['./top-hotel.component.css']
+  selector: "app-top-hotel",
+  templateUrl: "./top-hotel.component.html",
+  styleUrls: ["./top-hotel.component.css"]
 })
 export class TopHotelComponent implements OnInit {
   public form: FormGroup;
@@ -24,11 +29,21 @@ export class TopHotelComponent implements OnInit {
   public priceValue: number;
   public selectedListFeatureIds: any = [];
   public loading = false;
+  public option: string;
+  public myControl = new FormControl();
+  public filteredOptions: Observable<string[]>;
+  public allHotel: any;
+  public hotel: string;
+  public detailHotel: any;
+  public listNameHotel = [];
+  public hotelName: string;
 
   constructor(
+    private adminService: AdminService,
     private guestService: GuestService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private dialog: MatDialog
   ) {
     this.listFeature = this.guestService.listFeature;
 
@@ -52,22 +67,44 @@ export class TopHotelComponent implements OnInit {
   price(event) {
     this.priceValue = event.value;
   }
-  ngOnInit() {
+  async ngOnInit() {
     this.listFeature = this.guestService.listFeature;
     this.topHotel = this.guestService.topHotel;
     this.city = this.guestService.city;
     this.ratingValue = this.guestService.ratingValue;
     this.priceValue = this.guestService.priceValue;
+    this.allHotel = await this.adminService.getActiveHotel().toPromise();
+    for (let i = 0; i < this.allHotel.response.length; i++) {
+      this.hotelName = this.allHotel.response[i].name;
+      this.listNameHotel.push(this.hotelName);
+    }
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
+  }
+
+  // Filter input
+  public _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.listNameHotel.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
+  }
+
+  // Get Hotel from input
+  onOptionSelected(dataOption: any) {
+    this.hotel = dataOption.option.value;
   }
 
   async submit() {
-    this.loading = true
+    this.loading = true;
     this.selectedListFeatureIds = this.form.value.listFeature
       .map((v, i) => (v ? this.listFeature[i] : null))
       .filter(v => v !== null);
-    if (this.ratingValue == undefined || this.priceValue == undefined){
-      this.ratingValue=0;
-      this.priceValue=0;
+    if (this.ratingValue == undefined || this.priceValue == undefined) {
+      this.ratingValue = 0;
+      this.priceValue = 0;
     }
     this.predictedHotel = await this.guestService
       .getPredictedHotelByFeature(
@@ -77,19 +114,24 @@ export class TopHotelComponent implements OnInit {
         this.selectedListFeatureIds
       )
       .toPromise();
-
-    console.log(this.predictedHotel);
     this.guestService.predictedHotel = this.predictedHotel;
     this.loading = false;
     this.router.navigate(["/predicted-hotel"]);
   }
-  ngOnDestroy() {
-    this.guestService.listFeature = this.listFeature;
-    this.guestService.topHotel = this.topHotel;
-    this.guestService.city = this.city;
-    // this.cityService.predictedHotel = this.predictedHotel;
+
+  onClick() {
+    this.dialog.open(BookingModalComponent);
+  }
+
+  async onSubmit() {
+    this.detailHotel = await this.guestService
+      .getHotelByName(this.hotel)
+      .toPromise();
+    this.detailHotel = this.detailHotel.response;
+    this.router.navigate(["detail-hotel", this.detailHotel[0].id]);
   }
 }
+
 function minSelectedCheckboxes(min = 1) {
   const validator: ValidatorFn = (formArray: FormArray) => {
     const totalSelected = formArray.controls

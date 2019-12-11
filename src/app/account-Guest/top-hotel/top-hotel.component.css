@@ -333,7 +333,7 @@ a:focus {
 
 .packagesList .media-body .countryRating span {
     display: inline-block;
-    float: left;
+    /* float: left; */
     padding-right: 5px;
     margin-right: 5px;
     border-right: 1px solid #dedede;
@@ -373,7 +373,7 @@ a:focus {
 .bodyLeft,
 .bodyRight {
     display: inline-block;
-    float: left;
+    /* float: left; */
     width: 67%
 }
 
@@ -401,7 +401,7 @@ a:focus {
 @media(min-width:1200px) {
     .bodyLeft,
     .bodyRight {
-        width: 63%
+        width: 61%
     }
 }
 
@@ -453,7 +453,7 @@ a:focus {
 
 @media(min-width:1200px) {
     .bodyRight {
-        width: 37%
+        width: 39%
     }
 }
 
@@ -775,7 +775,7 @@ a:focus {
 
 .packagesList .media-body .countryRating span {
     display: inline-block;
-    float: left;
+    /* float: left; */
     padding-right: 5px;
     margin-right: 5px;
     border-right: 1px solid #dedede;
@@ -881,7 +881,7 @@ a:focus {
 }
 
 .sidebarPage .packagesList.hotelsList .media-body {
-    padding: 30px 30px 20px 20px
+    padding: 30px 10px 20px 10px
 }
 
 .loader {

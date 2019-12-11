@@ -6,17 +6,38 @@
     <div class="container">
         <div class="sort-by-section">
             <div class="row">
-                <div class="col-xs-12 col-sm-6"></div>
+                <div class="col-xs-12 col-sm-6">
+                    <form (ngSubmit)="onSubmit()" class="home_search_form" id="home_search_form" style="margin-top: 20px;">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" style="width: 255px">
+                                        <input type="text" placeholder="Search Hotel" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" required />
+                                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                {{ option }}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="searchbtn">
+                                    <button type="submit" class="btn btn-default" style="    background: #ff891e;
+                                    width: 100px;">
+                            Search
+                          </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="col-xs-12 col-sm-6">
                     <div class="icon-right pull-right">
                         <div class="icon active">
                             <a href="hotels-list-left-sidebar.html"><i class="fa fa-bars" aria-hidden="true"></i
                   ></a>
                         </div>
-                        <!-- <div class="icon">
-                        <a [routerLink]="['/houses-grid']" routerLinkActive="router-link-active"><i class="fa fa-th" aria-hidden="true"></i
-                  ></a>
-                    </div> -->
                     </div>
                 </div>
             </div>
@@ -81,7 +102,7 @@
                 <div class="media packagesList hotelsList" *ngFor="let hotel of predictedHotel">
                   <a
                     class="media-left fancybox-pop"
-                    href="{{hotel.img}}"  style="width:351px ; height:241px !important "
+                    [routerLink]="['/detail-hotel', hotel.id]" routerLinkActive="router-link-active"  style="width:351px ; height:241px !important "
                   >
                     <img
                       class="media-object"
@@ -123,7 +144,7 @@
                           class="btn buttonTransparent clearfix"
                           >Details</a
                         >
-                        <a href="booking-1.html" class="btn buttonTransparent"
+                        <a (click)="onClick()" class="btn buttonTransparent"
                           >book</a
                         >
                       </div>

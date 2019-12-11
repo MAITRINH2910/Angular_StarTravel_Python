@@ -9,6 +9,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { LoginModalComponent } from "../login-modal/login-modal.component";
 import { TokenStorageService } from "src/app/service/token-storage.service";
 import { RemindFormReviewComponent } from "../remind-form-review/remind-form-review.component";
+import { BookingModalComponent } from "../booking-modal/booking-modal.component";
 
 @Component({
   selector: "app-detail-hotel",
@@ -40,7 +41,7 @@ export class DetailHotelComponent implements OnInit {
     private activatedRouteService: ActivatedRoute,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private tokenStorage: TokenStorageService
   ) {}
   rating(event) {
@@ -59,7 +60,7 @@ export class DetailHotelComponent implements OnInit {
           this.sum = this.sum + item.rating;
         });
         if (this.feedback.length != 0) {
-          this.averageRating = Math.ceil(this.sum / this.feedback.length);
+          this.averageRating = this.sum / this.feedback.length;
         } else {
           this.averageRating = null;
         }
@@ -82,7 +83,6 @@ export class DetailHotelComponent implements OnInit {
           let value = this.utilities[utility];
           if (value == 1) {
             this.haveUtility.push(utility);
-            console.log(this.haveUtility);
           }
         }
       });
@@ -100,7 +100,7 @@ export class DetailHotelComponent implements OnInit {
       this.role != "USER"
     ) {
       this.dialog.open(LoginModalComponent);
-    } 
+    }
     if (
       this.ratingValue != undefined &&
       this.formFeedback.value.comment != ""
@@ -120,11 +120,14 @@ export class DetailHotelComponent implements OnInit {
       });
     }
     if (
-      this.role == "USER" &&
-      this.ratingValue == undefined &&
-      this.formFeedback.value.comment == ""
+      (this.role == "USER" && this.ratingValue == undefined) ||
+      (this.formFeedback.value.comment == "" && this.role == "USER")
     ) {
       this.dialog.open(RemindFormReviewComponent);
     }
+  }
+
+  onClick() {
+    this.dialog.open(BookingModalComponent);
   }
 }

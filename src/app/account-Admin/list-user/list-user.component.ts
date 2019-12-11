@@ -12,10 +12,13 @@ import { User } from "src/app/model/user.model";
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent {
-  displayedColumns: string[] = ["id", "username", "role"];
-  dataSource: MatTableDataSource<User>;
-  allUser: User[];
-  temp: any;
+  public displayedColumns: string[] = ["id", "username", "role"];
+  public dataSource: MatTableDataSource<User>;
+  public allUser: User[];
+  public temp: any;
+  private paginator: MatPaginator;
+  private sort: MatSort;
+
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
@@ -25,9 +28,7 @@ export class ListUserComponent {
   constructor(
     private adminService: AdminService
   ) {}
-  private paginator: MatPaginator;
-  private sort: MatSort;
-
+ 
   @ViewChild(MatSort, { static: false }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -53,6 +54,7 @@ export class ListUserComponent {
       this.applyFilter("");
     }
   }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches

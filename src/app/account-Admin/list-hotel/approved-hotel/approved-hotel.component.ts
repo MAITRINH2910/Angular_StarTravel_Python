@@ -10,7 +10,7 @@ import { Hotel } from "src/app/model/hotel.model";
   styleUrls: ['./approved-hotel.component.css']
 })
 export class ApprovedHotelComponent {
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     "id",
     "address",
     "city",
@@ -20,9 +20,12 @@ export class ApprovedHotelComponent {
     "rating",
     "status"
   ];
-  dataSource: MatTableDataSource<Hotel>;
-  allHotel: Hotel[];
-  temp: any;
+  public dataSource: MatTableDataSource<Hotel>;
+  public allHotel: Hotel[];
+  public temp: any;
+  private paginator: MatPaginator;
+  private sort: MatSort;
+
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
@@ -32,9 +35,7 @@ export class ApprovedHotelComponent {
   constructor(
     private adminService: AdminService
   ) {}
-  private paginator: MatPaginator;
-  private sort: MatSort;
-
+  
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
     this.setDataSourceAttributes();
@@ -49,7 +50,7 @@ export class ApprovedHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getActiveHotel(this.headerConfig)
+      .getActiveHotel()
       .toPromise();
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);

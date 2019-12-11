@@ -20,11 +20,11 @@ export class AdminService {
   public getAllUser(headerConfig) {
     return this.http.get(this.listUserApi, headerConfig);
   }
-  public getActiveHotel(headerConfig) {
-    return this.http.get(this.listActiveHotelApi, headerConfig);
+  public getActiveHotel() {
+    return this.http.get(this.listActiveHotelApi);
   }
-  public getPendingHotel(headerConfig) {
-    return this.http.get(this.listPendingHotelApi, headerConfig);
+  public getPendingHotel() {
+    return this.http.get(this.listPendingHotelApi);
   }
   public getInfoDashboard(headerConfig) {
     return this.http.get(this.infoData, headerConfig);

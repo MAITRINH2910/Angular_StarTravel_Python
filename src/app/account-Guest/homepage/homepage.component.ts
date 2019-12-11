@@ -3,13 +3,13 @@ import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { map, startWith } from "rxjs/operators";
-import { GuestService } from 'src/app/service/guest.service';
-import { AuthAccountService } from 'src/app/service/auth-account.service';
+import { GuestService } from "src/app/service/guest.service";
+import { AuthAccountService } from "src/app/service/auth-account.service";
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: "app-homepage",
+  templateUrl: "./homepage.component.html",
+  styleUrls: ["./homepage.component.css"]
 })
 export class HomepageComponent implements OnInit {
   private city: string;
@@ -25,11 +25,10 @@ export class HomepageComponent implements OnInit {
   constructor(
     private guestService: GuestService,
     private authService: AuthAccountService,
-    private routerService: Router,
-
+    private routerService: Router
   ) {}
 
-  async ngOnInit() {    
+  async ngOnInit() {
     this.cities = await this.guestService.getAllCities().toPromise();
     this.cities = this.cities.response;
 
@@ -64,15 +63,14 @@ export class HomepageComponent implements OnInit {
       .toPromise();
     this.topHotel = this.topHotel.response;
 
-    this.routerService.navigate(["/top-hotel"]);
-  }
-  ngOnDestroy() {
     this.guestService.listFeature = this.listFeature;
     this.guestService.topHotel = this.topHotel;
     this.guestService.city = this.city;
+
+    this.routerService.navigate(["/top-hotel"]);
   }
+ 
   logout() {
     this.authService.logout();
   }
 }
-

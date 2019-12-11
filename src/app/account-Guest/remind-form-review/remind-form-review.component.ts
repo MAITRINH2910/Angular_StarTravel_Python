@@ -8,6 +8,4 @@ import { Component } from '@angular/core';
 export class RemindFormReviewComponent{
   public message: string = "Please rating and comment to leave your review";
   public confirmButtonText = "OK";
- 
-
 }

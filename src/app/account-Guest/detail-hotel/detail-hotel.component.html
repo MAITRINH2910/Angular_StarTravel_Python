@@ -13,7 +13,7 @@
                                 <div class="item">
                                     <a class="media-left fancybox-pop">
                                         <!-- href="{{property.img}}"  -->
-                                        <img class="media-object" src="{{property.img}}" style="width: 740px" />
+                                        <img class="media-object" src="{{property?.img}}" style="width: 740px" />
                                     </a>
                                 </div>
                             </div>
@@ -23,9 +23,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="description-aria">
-                            <h1>{{ property.name }}</h1>
+                            <h1>{{ property?.name }}</h1>
                             <div class="sectionTitle2">
-                                <p>Address: {{ property.address }}</p>
+                                <p>Address: {{ property?.address }}</p>
                             </div>
                             <div class="sectionTitle2">
                                 <h2>Utilities: </h2>
@@ -59,7 +59,7 @@
                             <div class="reviewContent">
                                 <h3 class="reviewTitle">
                                     Reviews ({{reviewNumber}})
-                                    <span *ngIf="averageRating !=0">{{averageRating}}
+                                    <span *ngIf="averageRating !=0">{{averageRating | number:'1.1-2'}}
                     <i class="fa fa-star" aria-hidden="true"></i>                    
                   </span>
                                 </h3>
@@ -73,9 +73,9 @@
                                                 </a>
                                             </div>
                                             <div class="media-body" style="margin-left: 80px">
-                                                <h5 class="media-heading">{{item.username}}</h5>
-                                                <span>{{item.rating}}<i class="fa fa-star" aria-hidden="true"></i></span>
-                                                <p>{{item.content}}</p>
+                                                <h5 class="media-heading">{{item?.username}}</h5>
+                                                <span>{{item?.rating}}<i class="fa fa-star" aria-hidden="true"></i></span>
+                                                <p>{{item?.content}}</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -84,7 +84,7 @@
                                     <h3 class="reviewTitle">Leave your review</h3>
                                     <p>Want to Rate it?
                                         <span><b class="gridSizeValue">{{ ratingValue.value }} <i class="fa fa-star"></i></b>                            
-                                            <mat-slider style="width: 250px" #ratingValue (change)="rating($event)" step="0.3" min="1" max="10" [value]="ratingValue"></mat-slider>
+                                            <mat-slider style="width: 250px" #ratingValue (change)="rating($event)" step="0.1" min="1" max="10" [value]="ratingValue"></mat-slider>
                                         </span>
                                     </p>
                                     <div class="row">
@@ -174,11 +174,11 @@
                         <p>Total Cost</p>
                       </div>
                       <div class="col-xs-4 totalCostRight">
-                        {{ property.price | currency: "VND" }}
+                        {{ property?.price | currency: "VND" }}
                       </div>
                     </div>
                     <div class="col-sm-12">
-                      <a href="#" class="btn btn-block buttonTransparent"
+                      <a (click)="onClick()" class="btn btn-block buttonTransparent"
                         >Check now
                         <i class="fa fa-angle-right" aria-hidden="true"></i
                       ></a>

@@ -108,7 +108,7 @@ export class AddHotelComponent implements OnInit {
       this.hotel.name != null &&
       this.hotel.address != null &&
       this.hotel.city != null &&
-      this.hotel.price != null && this.hotel.price > 100000 && this.hotel.price < 9999999 &&
+      this.hotel.price != null && this.hotel.price > 99999 && this.hotel.price < 9999999 &&
       this.hotel.rating != null && this.hotel.rating > 0 && this.hotel.rating < 11
     ) {
       this.ownerService
@@ -124,8 +124,10 @@ export class AddHotelComponent implements OnInit {
         )
         .subscribe(data => {
           this.temp = data;
-          this.errorMessage = this.temp.response.error;
-          if (this.errorMessage == null) {
+          if (this.temp.status == 400) {
+            this.errorMessage = this.temp.response.error;
+          }
+          if (this.temp.status == 200) {
             this.routerService.navigate(["host/hotel/all-hotel"]);
           }
         });

@@ -8,6 +8,11 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { GuestService } from 'src/app/service/guest.service';
+import { map, startWith } from "rxjs/operators";
+import { Observable } from 'rxjs';
+import { AdminService } from 'src/app/service/admin.service';
+import { BookingModalComponent } from '../booking-modal/booking-modal.component';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-predict-hotel',
@@ -25,11 +30,21 @@ export class PredictHotelComponent implements OnInit {
   public priceValue: number;
   public selectedListFeatureIds: any = [];
   public loading = false;
+  public option: string;
+  public myControl = new FormControl();
+  public filteredOptions: Observable<string[]>;
+  public allHotel: any;
+  public hotel: string;
+  public detailHotel: any;
+  public listNameHotel = [];
+  public hotelName: string
 
   constructor(
+    private adminService: AdminService,
     private guestService: GuestService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private dialog: MatDialog
 
   ) {
     this.listFeature = this.guestService.listFeature;
@@ -53,12 +68,22 @@ export class PredictHotelComponent implements OnInit {
   price(event) {
     this.priceValue = event.value;
   }
-  ngOnInit() {
+  async ngOnInit() {
     this.city = this.guestService.city;
     this.listFeature = this.guestService.listFeature;
     this.topHotel = this.guestService.topHotel;
     this.predictedHotel = this.guestService.predictedHotel;
     this.predictedHotel = this.predictedHotel.response;  
+
+    this.allHotel = await this.adminService.getActiveHotel().toPromise();
+    for (let i=0; i< this.allHotel.response.length; i++) {
+      this.hotelName = this.allHotel.response[i].name;
+      this.listNameHotel.push(this.hotelName);
+  }
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
   }
   
   async submit() {
@@ -83,6 +108,30 @@ export class PredictHotelComponent implements OnInit {
     this.predictedHotel = this.predictedHotel.response;
     this.loading = false;
     this.router.navigate(["/predicted-hotel"]);  
+  }
+  
+  // Filter input
+  public _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.listNameHotel.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
+  }
+
+  // Get Hotel from input
+  onOptionSelected(dataOption: any) {
+    this.hotel = dataOption.option.value;
+  }
+  async onSubmit() {
+    this.detailHotel = await this.guestService
+      .getHotelByName(this.hotel)
+      .toPromise();
+    this.detailHotel = this.detailHotel.response;
+    this.router.navigate(['detail-hotel', this.detailHotel[0].id])
+  }
+
+  onClick() {
+    this.dialog.open(BookingModalComponent);
   }
 }
 

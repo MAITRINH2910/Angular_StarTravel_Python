@@ -10,7 +10,7 @@ import { Hotel } from "src/app/model/hotel.model";
   styleUrls: ['./pending-hotel.component.css']
 })
 export class PendingHotelComponent {
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     "id",
     "address",
     "city",
@@ -20,9 +20,12 @@ export class PendingHotelComponent {
     "rating",
     "status"
   ];
-  dataSource: MatTableDataSource<Hotel>;
-  allHotel: Hotel[];
-  temp: any;
+  public dataSource: MatTableDataSource<Hotel>;
+  public allHotel: Hotel[];
+  public temp: any;
+  private paginator: MatPaginator;
+  private sort: MatSort;
+
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
@@ -30,8 +33,6 @@ export class PendingHotelComponent {
   };
 
   constructor(private adminService: AdminService) {}
-  private paginator: MatPaginator;
-  private sort: MatSort;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;
@@ -47,7 +48,7 @@ export class PendingHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getPendingHotel(this.headerConfig)
+      .getPendingHotel()
       .toPromise();
 
     this.allHotel = this.temp.response;

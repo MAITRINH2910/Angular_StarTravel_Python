@@ -10,7 +10,7 @@ import { Hotel } from "src/app/model/hotel.model";
   styleUrls: ['./all-hotel.component.css']
 })
 export class AllHotelComponent {
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     "id",
     "address",
     "city",
@@ -20,9 +20,12 @@ export class AllHotelComponent {
     "rating",
     "status"
   ];
-  dataSource: MatTableDataSource<Hotel>;
-  allHotel: Hotel[];
-  temp: any;
+  public dataSource: MatTableDataSource<Hotel>;
+  public allHotel: Hotel[];
+  public temp: any;
+  private paginator: MatPaginator;
+  private sort: MatSort;
+
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
@@ -32,8 +35,6 @@ export class AllHotelComponent {
   constructor(
     private adminService: AdminService
   ) {}
-  private paginator: MatPaginator;
-  private sort: MatSort;
 
   @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
     this.sort = ms;

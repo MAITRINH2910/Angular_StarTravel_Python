@@ -33,8 +33,8 @@ export class DashboardAdminComponent implements OnInit {
       .subscribe(data => {
         this.infoAdmin = data;
         this.infoAdmin = this.infoAdmin.response;
-        console.log(this.infoAdmin);
       });
+      
     this.adminService.getInfoDashboard(this.headerConfig).subscribe(data => {
       this.infoData = data;
       this.infoData = this.infoData.response;

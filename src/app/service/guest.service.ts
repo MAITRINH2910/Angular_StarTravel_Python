@@ -11,6 +11,8 @@ export class GuestService {
   public topHotelApi: string = url + "/hotels/get_top_hotels";
   public predictedHotelApi: string = url + "/hotels/get_predicted_hotels";
   public detailHotelApi: string = url + "/hotels/get_one_hotel";
+  public hotelByNameApi: string = url + "/hotels/get_hotel_by_name";
+
   public city: string;
   public listFeature: any;
   public topHotel: any;
@@ -51,5 +53,10 @@ export class GuestService {
 
   public getOneHotel(id: string) {
     return this.http.get(this.detailHotelApi + "/" + id);
+  }
+
+  public getHotelByName(name: string){
+    var obj = { name: name };
+    return this.http.post(this.hotelByNameApi, obj);
   }
 }

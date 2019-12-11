@@ -1,15 +1,14 @@
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Inject } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 import { TokenStorageService } from "src/app/service/token-storage.service";
-import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthAccountService } from "src/app/service/auth-account.service";
 import { AuthLoginInfo } from "src/app/model/login.model";
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
+import {
+  MatDialogRef,
+  MatDialog
+} from "@angular/material/dialog";
+
 @Component({
   selector: "app-login-modal",
   templateUrl: "./login-modal.component.html",
@@ -27,18 +26,15 @@ export class LoginModalComponent implements OnInit {
   public loading = false;
   public submitted = false;
   public errorMessage = "";
-  public successMessage = "";
   public role: string;
   private loginInfo: AuthLoginInfo;
-  private token: any;
   response: any;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthAccountService,
     private tokenStorage: TokenStorageService,
-    private router: Router,
+    public dialog: MatDialog,
     public dialogRef: MatDialogRef<LoginModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
   ngOnInit() {
@@ -68,14 +64,15 @@ export class LoginModalComponent implements OnInit {
         this.tokenStorage.saveToken(this.response.token);
         this.tokenStorage.saveUsername(this.response.username);
         this.tokenStorage.saveAuthority(this.response.role);
-        // this.successMessage = "Succesfully Login";
         this.dialogRef.close(true);
         window.location.reload();
       }
     });
-   
   }
-  onClick(){
-    this.dialogRef.close(true);
+  onSignUp() {
+    {
+      this.dialog.open(RegisterModalComponent);
+      this.dialogRef.close(true);
+    }
   }
 }

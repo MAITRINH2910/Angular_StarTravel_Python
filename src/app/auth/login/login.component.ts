@@ -20,8 +20,7 @@ export class LoginComponent implements OnInit {
   public errorMessage = "";
   public role: string;
   private loginInfo: AuthLoginInfo;
-  private token: any;
-  response: any;
+  public response: any;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthAccountService,

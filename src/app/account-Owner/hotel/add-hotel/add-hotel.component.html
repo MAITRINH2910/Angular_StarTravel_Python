@@ -193,7 +193,8 @@
                                                 <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.rating.dirty && formAddHouse.controls.rating.invalid 
                                                       ||formAddHouse.controls.rating.touched">
                                                     <div *ngIf="formAddHouse.controls.rating.hasError('required'); else rating">This field is required!</div>
-                                                    <div *ngIf="formAddHouse.controls.rating.hasError('pattern')">Rating from 1 to 10</div>
+                                                    <div *ngIf="formAddHouse.controls.rating.hasError('pattern')">Rating: 0 <i class="fa fa-star" aria-hidden="true"></i>- 10<i class="fa fa-star" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
                                             </ng-template>
                                         </div>

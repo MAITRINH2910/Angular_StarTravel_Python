@@ -40,11 +40,6 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
-
     this.signupInfo = new SignUpInfo(
       this.f.username.value,
       this.f.password.value,
@@ -56,7 +51,7 @@ export class RegisterComponent implements OnInit {
       this.response = data;
       this.response = this.response.response;
       this.errorMessage = this.response.error;
-      if (this.response.id != null){
+      if (this.errorMessage == null){
         this.successMessage = "Register succesfully"
       }
     });
