@@ -19,7 +19,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   </pre>
 </ul>
 
+## Run Postgres
+Open cmd:     
+    <code>docker exec -it hoteldb psql -U postgres -d estay</code>
+    <code>select Max(id) from users;</code>
+    <code>select nextval('users_id_seq');</code>
+    <code>select setval('users_id_seq',1785);</code>
+
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
