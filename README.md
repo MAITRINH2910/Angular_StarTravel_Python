@@ -20,12 +20,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 </ul>
 
 ## Run Postgres
-Open cmd:     
-    <code>docker exec -it hoteldb psql -U postgres -d estay</code>
-    <code>select Max(id) from users;</code>
-    <code>select nextval('users_id_seq');</code>
-    <code>select setval('users_id_seq',1785);</code>
-
+Open cmd:
+<ul>
+    <li><code>docker exec -it hoteldb psql -U postgres -d estay</code></li>
+    <li><code>select Max(id) from users;</code></li>
+    <li><code>select nextval('users_id_seq');</code></li>
+    <li><code>select setval('users_id_seq',1785);</code></li>
+</ul>
 
 ## Development server
 
