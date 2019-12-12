@@ -1,9 +1,8 @@
 # AngularEstay
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
-
+## Import Library for Angular
 <ul>
-  <li> Import Library </li>
   <h6>1. Angular Material</h6>
   <pre>
     <code>ng add @angular/material</code>
