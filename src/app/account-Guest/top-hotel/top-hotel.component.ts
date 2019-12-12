@@ -73,7 +73,7 @@ export class TopHotelComponent implements OnInit {
     this.city = this.guestService.city;
     this.ratingValue = this.guestService.ratingValue;
     this.priceValue = this.guestService.priceValue;
-    this.allHotel = await this.adminService.getActiveHotel().toPromise();
+    this.allHotel = await this.guestService.getAllHotelInCity(this.city).toPromise();
     for (let i = 0; i < this.allHotel.response.length; i++) {
       this.hotelName = this.allHotel.response[i].name;
       this.listNameHotel.push(this.hotelName);

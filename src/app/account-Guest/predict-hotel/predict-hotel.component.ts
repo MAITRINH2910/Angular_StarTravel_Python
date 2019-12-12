@@ -75,7 +75,7 @@ export class PredictHotelComponent implements OnInit {
     this.predictedHotel = this.guestService.predictedHotel;
     this.predictedHotel = this.predictedHotel.response;  
 
-    this.allHotel = await this.adminService.getActiveHotel().toPromise();
+    this.allHotel = await this.guestService.getAllHotelInCity(this.city).toPromise();
     for (let i=0; i< this.allHotel.response.length; i++) {
       this.hotelName = this.allHotel.response[i].name;
       this.listNameHotel.push(this.hotelName);

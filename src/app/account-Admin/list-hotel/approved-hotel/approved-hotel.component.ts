@@ -50,7 +50,7 @@ export class ApprovedHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getActiveHotel()
+      .getActiveHotel(this.headerConfig)
       .toPromise();
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);

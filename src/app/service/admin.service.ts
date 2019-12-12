@@ -12,6 +12,7 @@ export class AdminService {
   public listPendingHotelApi: string = url + "/hotels/get_all_hotels_status/INACTIVE";
   public listUserApi: string = url + "/users/get_all_user";
   public infoData: string = url + "/hotels/get_information_database";
+  
   constructor(public http: HttpClient) {}
 
   public getAllHotel(headerConfig) {
@@ -20,11 +21,11 @@ export class AdminService {
   public getAllUser(headerConfig) {
     return this.http.get(this.listUserApi, headerConfig);
   }
-  public getActiveHotel() {
-    return this.http.get(this.listActiveHotelApi);
+  public getActiveHotel(headerConfig) {
+    return this.http.get(this.listActiveHotelApi, headerConfig );
   }
-  public getPendingHotel() {
-    return this.http.get(this.listPendingHotelApi);
+  public getPendingHotel(headerConfig) {
+    return this.http.get(this.listPendingHotelApi, headerConfig);
   }
   public getInfoDashboard(headerConfig) {
     return this.http.get(this.infoData, headerConfig);

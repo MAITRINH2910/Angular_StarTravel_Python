@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { url } from '../../app/common-api';
+import { url } from "../../app/common-api";
 
 @Injectable({
   providedIn: "root"
@@ -12,6 +12,7 @@ export class GuestService {
   public predictedHotelApi: string = url + "/hotels/get_predicted_hotels";
   public detailHotelApi: string = url + "/hotels/get_one_hotel";
   public hotelByNameApi: string = url + "/hotels/get_hotel_by_name";
+  public allHotelInCityApi: string = url + "/hotels/get_all_hotels_in_city";
 
   public city: string;
   public listFeature: any;
@@ -55,8 +56,12 @@ export class GuestService {
     return this.http.get(this.detailHotelApi + "/" + id);
   }
 
-  public getHotelByName(name: string){
+  public getHotelByName(name: string) {
     var obj = { name: name };
     return this.http.post(this.hotelByNameApi, obj);
+  }
+
+  public getAllHotelInCity(city: string) {
+    return this.http.get(this.allHotelInCityApi + "/" + city);
   }
 }

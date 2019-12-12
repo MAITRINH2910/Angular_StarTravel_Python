@@ -11,7 +11,7 @@ import { Hotel } from "src/app/model/hotel.model";
 })
 export class PendingHotelComponent {
   public displayedColumns: string[] = [
-    "id",
+    // "id",
     "address",
     "city",
     "hotel_owner",
@@ -48,7 +48,7 @@ export class PendingHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getPendingHotel()
+      .getPendingHotel(this.headerConfig)
       .toPromise();
 
     this.allHotel = this.temp.response;
@@ -70,17 +70,7 @@ export class PendingHotelComponent {
     console.log(hotel);
     hotel.status = "ACTIVE";
     this.adminService.approveHotel(hotel, this.headerConfig).subscribe(data => {
-      console.log(data);
-      // this.updateData(data);
+      window.location.reload();
     });
-  }
-
-  updateData(data) {
-    for (var i = 0; i < this.allHotel.length; i++) {
-      if (this.allHotel[i].id == data.id) {
-        this.allHotel[i] = data;
-        break;
-      }
-    }
   }
 }

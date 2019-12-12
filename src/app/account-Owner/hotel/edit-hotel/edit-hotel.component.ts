@@ -122,7 +122,7 @@ export class EditHotelComponent implements OnInit {
             this.hotel.img,
             this.hotel.rating,
             this.hotel.price,
-            "INACTIVE",
+            this.hotel.status,
             this.headerConfig
           )
           .subscribe(data => {
