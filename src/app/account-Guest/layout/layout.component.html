@@ -21,16 +21,15 @@
                                 <a [routerLink]="['/']" routerLinkActive="router-link-active" class="dropdown-toggle" data-toggle="dropdown">Home</a
                 >
               </li>
-              <li *ngIf="authority === 'user'" class="dropdown singleDrop ">
+              <li *ngIf="username" class="dropdown singleDrop ">
                 <a
-                  [routerLink]="['/me/dashboard']"
-                  routerLinkActive="router-link-active"
+                  (click)="onClick()"
                   class="dropdown-toggle"
-                  data-toggle="dropdown"
-                  >Account</a
+                  data-toggle="dropdown" style="cursor: pointer;"
+                  >Account - {{username}}</a
                 >
               </li>
-              <li *ngIf="authority === 'user'" class="dropdown singleDrop ">
+              <li *ngIf="username" class="dropdown singleDrop ">
                 <a
                   (click)="logout()"
                   class="dropdown-toggle"
@@ -38,7 +37,7 @@
                   >Log Out</a
                 >
               </li>
-              <li *ngIf="!authority" class="dropdown singleDrop ">
+              <li *ngIf="!username" class="dropdown singleDrop ">
                 <a
                   [routerLink]="['/login']"
                   routerLinkActive="router-link-active"
@@ -48,7 +47,7 @@
                   >Sign In</a
                 >
               </li>
-              <li *ngIf="!authority" class="dropdown singleDrop ">
+              <li *ngIf="!username" class="dropdown singleDrop ">
                 <a
                   [routerLink]="['/register']"
                   routerLinkActive="router-link-active"

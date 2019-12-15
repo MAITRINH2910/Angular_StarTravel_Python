@@ -23,13 +23,14 @@ import { EditProfileAdminComponent } from "./account-Admin/profile/edit-profile-
 import { DashboardOwnerComponent } from "./account-Owner/dashboard-owner/dashboard-owner.component";
 import { AllHotelOwnerComponent } from "./account-Owner/hotel/all-hotel-owner/all-hotel-owner.component";
 import { AddHotelComponent } from "./account-Owner/hotel/add-hotel/add-hotel.component";
-import { EditHotelComponent } from "./account-Owner/hotel/edit-hotel/edit-hotel.component";
 import { ViewProfileOwnerComponent } from "./account-Owner/profile/view-profile-owner/view-profile-owner.component";
 import { EditProfileOwnerComponent } from "./account-Owner/profile/edit-profile-owner/edit-profile-owner.component";
 import { LayoutOwnerComponent } from "./account-Owner/layout-owner/layout-owner.component";
 import { AuthGuard } from "./guard/auth.guard";
 import { RegisterOwnerComponent } from "./auth/register-owner/register-owner.component";
 import { LoginOwnerComponent } from "./auth/login-owner/login-owner.component";
+import { EditHotelComponent } from './account-Admin/list-hotel/edit-hotel/edit-hotel.component';
+import { EditHotelOwnerComponent } from './account-Owner/hotel/edit-hotel-owner/edit-hotel-owner.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,11 @@ const routes: Routes = [
     },
     children: [
       {
+        path: "",
+        redirectTo: "estay",
+        pathMatch: "full"
+      },
+      {
         path: "estay",
         component: DashboardAdminComponent
       },
@@ -104,6 +110,10 @@ const routes: Routes = [
       {
         path: "listing/approved-hotel",
         component: ApprovedHotelComponent
+      },
+      {
+        path: "listing/edit-hotel/:id",
+        component: EditHotelComponent
       },
       {
         path: "profile/view-profile",
@@ -143,7 +153,7 @@ const routes: Routes = [
       },
       {
         path: "hotel/edit-hotel/:id",
-        component: EditHotelComponent
+        component: EditHotelOwnerComponent
       },
       {
         path: "profile/view-profile",

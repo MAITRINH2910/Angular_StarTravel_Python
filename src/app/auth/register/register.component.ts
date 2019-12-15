@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { SignUpInfo } from 'src/app/model/signup.model';
-import { AuthAccountService } from 'src/app/service/auth-account.service';
+import { SignUpInfo } from "src/app/model/signup.model";
+import { AuthAccountService } from "src/app/service/auth-account.service";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent implements OnInit {
   public loading = false;
@@ -16,23 +16,25 @@ export class RegisterComponent implements OnInit {
   public isSignUpFailed = false;
   public registerForm: FormGroup;
   public errorMessage = "";
-  public successMessage="";
+  public successMessage = "";
 
   private response: any;
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthAccountService   
+    private authService: AuthAccountService
   ) {}
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required],//Validators.minLength(6)
-      cfPassword: ["", Validators.required]
-    },
-    {
-      validator: MustMatch("password", "cfPassword")
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ["", Validators.required],
+        password: ["", Validators.required], //Validators.minLength(6)
+        cfPassword: ["", Validators.required]
+      },
+      {
+        validator: MustMatch("password", "cfPassword")
+      }
+    );
   }
   get f() {
     return this.registerForm.controls;
@@ -45,16 +47,20 @@ export class RegisterComponent implements OnInit {
       this.f.password.value,
       "USER"
     );
-    console.log(this.signupInfo);
-
-    this.authService.signUp(this.signupInfo).subscribe(data => {
-      this.response = data;
-      this.response = this.response.response;
-      this.errorMessage = this.response.error;
-      if (this.errorMessage == null){
-        this.successMessage = "Register succesfully"
-      }
-    });
+    if (
+      this.f.cfPassword.value == this.f.password.value &&
+      this.f.password.value != ""
+    ) {
+      this.authService.signUp(this.signupInfo).subscribe(data => {
+        this.response = data;
+        this.response = this.response.response;
+        console.log(data);
+        this.errorMessage = this.response.error;
+        if (this.errorMessage == null) {
+          this.successMessage = "Register succesfully";
+        }
+      });
+    }
   }
 }
 

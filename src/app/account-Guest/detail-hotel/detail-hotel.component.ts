@@ -47,24 +47,30 @@ export class DetailHotelComponent implements OnInit {
   rating(event) {
     this.ratingValue = event.value;
   }
+
+  loadFeedback(hotel_id) {
+    this.userService.getAllFeedback(hotel_id).subscribe(data => {
+      this.feedback = data;
+      this.feedback = this.feedback.response;
+      this.reviewNumber = this.feedback.length;
+      this.sum = 0;
+      this.feedback.forEach(item => {
+        this.sum = this.sum + item.rating;
+      });
+      if (this.feedback.length != 0) {
+        this.averageRating = this.sum / this.feedback.length;
+      } else {
+        this.averageRating = null;
+      }
+    });
+  }
+
   ngOnInit() {
     this.hotel = new Hotel();
     this.getHotel();
     this.activatedRouteService.params.subscribe(data => {
       let id = data.id;
-      this.userService.getAllFeedback(id).subscribe(data => {
-        this.feedback = data;
-        this.feedback = this.feedback.response;
-        this.reviewNumber = this.feedback.length;
-        this.feedback.forEach(item => {
-          this.sum = this.sum + item.rating;
-        });
-        if (this.feedback.length != 0) {
-          this.averageRating = this.sum / this.feedback.length;
-        } else {
-          this.averageRating = null;
-        }
-      });
+      this.loadFeedback(id);
     });
     this.form();
     if (window.localStorage.getItem("AuthToken") != null) {
@@ -95,10 +101,7 @@ export class DetailHotelComponent implements OnInit {
     });
   }
   onSubmit() {
-    if (
-      window.localStorage.getItem("AuthToken") == null ||
-      this.role != "USER"
-    ) {
+    if (window.localStorage.getItem("AuthToken") == null) {
       this.dialog.open(LoginModalComponent);
     }
     if (
@@ -115,13 +118,17 @@ export class DetailHotelComponent implements OnInit {
             this.headerConfig
           )
           .subscribe(data => {
-            window.location.reload();
+            // window.location.reload();
+            this.loadFeedback(hotel_id);
+            this.ratingValue = undefined;
+            this.formFeedback.value.comment = "";
+            this.formFeedback.reset();
           });
       });
     }
     if (
-      (this.role == "USER" && this.ratingValue == undefined) ||
-      (this.formFeedback.value.comment == "" && this.role == "USER")
+      this.ratingValue == undefined && window.localStorage.getItem("AuthToken") != null||
+      this.formFeedback.value.comment == "" && window.localStorage.getItem("AuthToken") != null
     ) {
       this.dialog.open(RemindFormReviewComponent);
     }

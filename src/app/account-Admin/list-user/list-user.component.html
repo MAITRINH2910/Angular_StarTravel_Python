@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="example-container mat-elevation-z8">
-                        <mat-table #Table [dataSource]="dataSource" style="width: 100%;">
+                        <mat-table #Table [dataSource]="dataSource" style="width: 100%;" matSort>
                             <!-- Position Column -->
                             <ng-container matColumnDef="id">
                                 <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
@@ -56,11 +56,23 @@
                                 </mat-cell>
                             </ng-container>
 
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                                    Delete
+                                </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <div (click)="openDialog(element.id)" style="cursor: pointer;">
+                                        &nbsp;<i class="fa fa-trash" style="color: #007bff;"></i>
+                                    </div>
+                                </mat-cell>
+                            </ng-container>
+
                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
                         </mat-table>
 
-                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+                        <mat-paginator [pageSizeOptions]="[5, 10, 100]"></mat-paginator>
                     </div>
                 </div>
                 <!-- end row -->

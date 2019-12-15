@@ -38,12 +38,16 @@
                     <div class="example-container mat-elevation-z8">
 
                         <mat-table [dataSource]="dataSource" matSort>
-
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                            </ng-container>
                             <!-- ID Column -->
-                            <ng-container matColumnDef="id">
+                            <!-- <ng-container matColumnDef="id">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
                                 <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-                            </ng-container>
+                            </ng-container> -->
 
                             <!-- Address Column -->
                             <ng-container matColumnDef="address">
@@ -51,17 +55,12 @@
                                 <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
                             </ng-container>
 
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="name">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-                            </ng-container>
-
                             <!-- City Column -->
                             <ng-container matColumnDef="city">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
                                 <mat-cell *matCellDef="let row" [style.color]="row.city"> {{row.city}} </mat-cell>
                             </ng-container>
+
                             <!-- hotel_owner Column -->
                             <ng-container matColumnDef="hotel_owner">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Owner </mat-header-cell>
@@ -81,6 +80,15 @@
                             <ng-container matColumnDef="status">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                                 <mat-cell *matCellDef="let row" [style.color]="row.status"> {{row.status}} </mat-cell>
+                            </ng-container>
+
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let row">
+                                    <a [routerLink]="['/admin/listing/edit-hotel', row.id]" routerLinkActive="router-link-active"><i class="fa fa-edit"></i>&nbsp;</a> |
+                                    <div (click)="openDialog(row.id)" style="cursor: pointer;">&nbsp;<i class="fa fa-trash" style="color: #0000ee;"></i></div>
+                                </mat-cell>
                             </ng-container>
 
                             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

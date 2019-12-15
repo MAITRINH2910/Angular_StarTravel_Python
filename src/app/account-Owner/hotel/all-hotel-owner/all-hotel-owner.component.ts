@@ -5,7 +5,7 @@ import { Hotel } from "src/app/model/hotel.model";
 import { MatDialog } from "@angular/material";
 import { Router } from "@angular/router";
 import { OwnerService } from "src/app/service/owner.service";
-import { DeleteHotelComponent } from "../../delete-hotel/delete-hotel.component";
+import { DeleteHotelComponent } from '../delete-hotel/delete-hotel.component';
 
 @Component({
   selector: "app-all-hotel-owner",
@@ -15,6 +15,7 @@ import { DeleteHotelComponent } from "../../delete-hotel/delete-hotel.component"
 export class AllHotelOwnerComponent implements OnInit {
   dataSource: MatTableDataSource<Hotel>;
   temp: any;
+  public message: any;
   public allHotel: Hotel[];
   private paginator: MatPaginator;
   private sort: MatSort;
@@ -69,7 +70,10 @@ export class AllHotelOwnerComponent implements OnInit {
     if (this.paginator && this.sort) {
       this.applyFilter("");
     }
-    console.log(this.allHotel);
+    this.message = this.temp.response.message;
+    if (this.message!=null){
+      this.routerService.navigate(['login-owner'])
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -78,20 +82,10 @@ export class AllHotelOwnerComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   openDialog(id: string) {
-    const dialogRef = this.dialog.open(DeleteHotelComponent, {
+   this.dialog.open(DeleteHotelComponent, {
       data: {
         id: id
       }
     })    
   }
-
-  // onDeleteList(id: string) {
-  //   alert("Do you want to delete it?");
-  //   this.ownerService.deleteHotel(id, this.headerConfig).subscribe(data => {
-  //     this.routerService.navigate(["/host/hotel"]);
-  //     this.updateDataAfterDelete(id);
-  //   });
-  // }
-
- 
 }

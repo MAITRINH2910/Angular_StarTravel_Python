@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from "@angular/common/http";
 import { AdminService } from "src/app/service/admin.service";
 import { AuthAccountService } from 'src/app/service/auth-account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -24,19 +25,15 @@ export class DashboardAdminComponent implements OnInit {
 
   constructor(
     private authService: AuthAccountService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.infoAdmin = this.authService
-      .getInfoUser(this.headerConfig)
-      .subscribe(data => {
-        this.infoAdmin = data;
-        this.infoAdmin = this.infoAdmin.response;
-      });
+ 
       
     this.adminService.getInfoDashboard(this.headerConfig).subscribe(data => {
-      this.infoData = data;
+      this.infoData = data;     
       this.infoData = this.infoData.response;
       this.number_of_user = this.infoData.number_of_user;
       this.number_of_hotel = this.infoData.number_of_hotel;

@@ -26,7 +26,7 @@ export class DashboardOwnerComponent implements OnInit {
   ngOnInit() {
     this.ownerService.getInfoDashboardOwner(this.headerConfig).subscribe(data => {
       this.infoData = data;
-      this.infoData = this.infoData.response;
+      this.infoData = this.infoData.response; 
       this.number_of_hotel = this.infoData.number_of_hotel;
       this.number_of_hotel_active = this.infoData.number_of_hotel_active;
       this.number_of_hotel_inactive = this.infoData.number_of_hotel_inactive;

@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { SignUpInfo } from 'src/app/model/signup.model';
-import { AuthAccountService } from 'src/app/service/auth-account.service';
+import { SignUpInfo } from "src/app/model/signup.model";
+import { AuthAccountService } from "src/app/service/auth-account.service";
 
 @Component({
-  selector: 'app-register-owner',
-  templateUrl: './register-owner.component.html',
-  styleUrls: ['./register-owner.component.css']
+  selector: "app-register-owner",
+  templateUrl: "./register-owner.component.html",
+  styleUrls: ["./register-owner.component.css"]
 })
 export class RegisterOwnerComponent implements OnInit {
   public loading = false;
@@ -21,18 +21,20 @@ export class RegisterOwnerComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthAccountService   
+    private authService: AuthAccountService
   ) {}
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required],//Validators.minLength(6)
-      cfPassword: ["", Validators.required]
-    },
-    {
-      validator: MustMatch("password", "cfPassword")
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ["", Validators.required],
+        password: ["", Validators.required], //Validators.minLength(6)
+        cfPassword: ["", Validators.required]
+      },
+      {
+        validator: MustMatch("password", "cfPassword")
+      }
+    );
   }
   get f() {
     return this.registerForm.controls;
@@ -46,14 +48,19 @@ export class RegisterOwnerComponent implements OnInit {
       "HOTEL_OWNER"
     );
 
-    this.authService.signUp(this.signupInfo).subscribe(data => {
-      this.response = data;
-      this.response = this.response.response;
-      this.errorMessage = this.response.error;
-      if (this.errorMessage == null){
-        this.successMessage = "Register succesfully"
-      }
-    });
+    if (
+      this.f.cfPassword.value == this.f.password.value &&
+      this.f.password.value != ""
+    ) {
+      this.authService.signUp(this.signupInfo).subscribe(data => {
+        this.response = data;
+        this.response = this.response.response;
+        this.errorMessage = this.response.error;
+        if (this.errorMessage == null) {
+          this.successMessage = "Register succesfully";
+        }
+      });
+    }
   }
 }
 

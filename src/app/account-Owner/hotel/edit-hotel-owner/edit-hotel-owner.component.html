@@ -1,0 +1,172 @@
+<!-- ===========Innerpage-wrapper============= -->
+<section>
+    <div class="content add-details profile">
+        <div class="in-content-wrapper">
+            <div class="row no-gutters">
+                <div class="col">
+                    <div class="heading-messages">
+                        <h3>My Hotel</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="breadcrumb">
+                        <div class="breadcrumb-item">
+                            <i class="fa fa-angle-right"></i><a href="#">My Hotel</a>
+                        </div>
+                        <div class="breadcrumb-item active">
+                            <i class="fa fa-angle-right"></i>Add Hotel
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="row">
+                    <div class="col">
+                        <div class="details-text">
+                            <h4>Your Homestay</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-listing-form">
+                    <form class="text-center" #formEdit="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" #nameForm="ngModel" [(ngModel)]="name" name="name" class="form-control" required="required" />
+
+                                            <div *ngIf="
+                          formEdit.submitted ||
+                          nameForm.dirty ||
+                          nameForm.touched
+                        " class="alert alert-danger">
+                                                <div *ngIf="nameForm.hasError('required')" style="color: red">
+                                                    Name is required!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" #addressForm="ngModel" [(ngModel)]="address" name="address" class="form-control" required="required" />
+
+                                            <div *ngIf="
+                          formEdit.submitted ||
+                          addressForm.dirty ||
+                          addressForm.touched
+                        " class="alert alert-danger">
+                                                <div *ngIf="addressForm.hasError('required')" style="color: red">
+                                                    Address is required!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <mat-form-field class="example-full-width" style=" margin-left: 170px;
+                                            margin-top: -8px;">
+                                                <input type="text" [(ngModel)]="city" name="city" matInput [formControl]="myControl" [matAutocomplete]="auto" style="padding-left: 10px;" required="required" />
+                                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+                                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                        {{ option }}
+                                                    </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </div>
+                                        <!-- end form-group -->
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <input type="number" #priceForm="ngModel" [(ngModel)]="price" name="price" class="form-control" pattern="[1-9]{1}[0-9]{5,6}" required="required" />
+
+                                            <div *ngIf="
+                          formEdit.submitted ||
+                          priceForm.dirty ||
+                          priceForm.touched
+                        ">
+                                                <div *ngIf="priceForm.hasError('required')" style="color: red">
+                                                    Price is required!
+                                                </div>
+                                                <div *ngIf="priceForm.hasError('pattern')" style="color: red">
+                                                    Price: 100.000VND - 9.999.999VND
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label for="to2" class="">Link Image</label>
+                                            <input type="text" class="form-control" [(ngModel)]="img" [ngModelOptions]="{ standalone: true }" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md">
+                                        <div class="form-group">
+                                            <label>Rating</label>
+                                            <input type="number" #ratingForm="ngModel" [(ngModel)]="rating" name="rating" class="form-control" pattern="^([1-9]|10)$" required="required" />
+
+                                            <div *ngIf="
+                          formEdit.submitted ||
+                          ratingForm.dirty ||
+                          ratingForm.touched
+                        ">
+                                                <div *ngIf="ratingForm.hasError('required')" style="color: red">
+                                                    Rating is required!
+                                                </div>
+                                                <div *ngIf="ratingForm.hasError('pattern')" style="color: red">
+                                                    Rating: 0 <i class="fa fa-star" aria-hidden="true"></i>- 10<i class="fa fa-star" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="errorMessage" class="alert-danger" style="background: #ff000094;
+                                text-align: center; height: 30px; width: 165px; padding: 5px;">
+                                    {{ errorMessage }}
+                                </div>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <button type="submit" class="btn" style="background: gold; font-size: large">
+                      Update
+                    </button>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <button type="button" class="btn" style="font-size: large" [routerLink]="['/host/hotel/all-hotel']" routerLinkActive="router-link-active">
+                      Cancel
+                    </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end column -->
+                        </div>
+                        <!-- end row -->
+                    </form>
+                </div>
+                <!-- end hotel-listing-form -->
+            </div>
+            <!-- end box -->
+        </div>
+        <!-- end in-content-wrapper -->
+    </div>
+    <!-- end profile -->
+</section>
+<!-- ===========End Innerpage-wrapper============= -->

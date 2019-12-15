@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { GuestService } from "src/app/service/guest.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
-import { OwnerService } from "src/app/service/owner.service";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import { Hotel } from "src/app/model/hotel.model";
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: "app-edit-hotel",
@@ -31,12 +31,12 @@ export class EditHotelComponent implements OnInit {
   public price?: string;
   public rating?: string;
   public city?: string;
-
+  private status: string;
   constructor(
     private guestService: GuestService,
     private activatedRouteService: ActivatedRoute,
-    private ownerService: OwnerService,
-    private routerService: Router
+    private adminService: AdminService,
+    private routerService: Router,
   ) {}
   headerConfig = {
     headers: new HttpHeaders({
@@ -81,6 +81,7 @@ export class EditHotelComponent implements OnInit {
         this.img = this.property.img;
         this.price = this.property.price;
         this.rating = this.property.rating;
+        this.status = this.property.status
         this.utilities = this.hotel.response.utilities;
         if (this.property.img == "") {
           this.img = "null";
@@ -112,7 +113,7 @@ export class EditHotelComponent implements OnInit {
         this.hotel.rating > 0 &&
         this.hotel.rating < 11
       ) {
-        this.ownerService
+        this.adminService
           .updateHotel(
             this.hotel.response.detail_hotels.id,
             this.hotel.name,
@@ -122,17 +123,16 @@ export class EditHotelComponent implements OnInit {
             this.hotel.img,
             this.hotel.rating,
             this.hotel.price,
-            this.hotel.status,
+            this.status,
             this.headerConfig
           )
           .subscribe(data => {
             this.temp = data;
-            console.log(data);
             if (this.temp.status == 400) {
               this.errorMessage = this.temp.response.error;
             }
             if (this.temp.status == 200) {
-              this.routerService.navigate(["host/hotel/all-hotel"]);
+              this.routerService.navigate(["admin/listing/all-hotel"]);
             }
           });
       }
