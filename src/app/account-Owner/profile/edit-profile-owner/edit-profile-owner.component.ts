@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { User } from "src/app/model/user.model";
 import { HttpHeaders } from "@angular/common/http";
 import { AuthAccountService } from 'src/app/service/auth-account.service';
 
@@ -13,10 +12,8 @@ import { AuthAccountService } from 'src/app/service/auth-account.service';
 export class EditProfileOwnerComponent implements OnInit {
   public infoAdmin: any;
   public message: string;
-  public user: User;
   public editForm: FormGroup;
   public submitted = false;
-  private idAdmin: string;
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
@@ -28,15 +25,7 @@ export class EditProfileOwnerComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.infoAdmin = this.authService
-      .getInfoUser(this.headerConfig)
-      .subscribe(data => {
-        this.infoAdmin = data;
-        this.infoAdmin = this.infoAdmin.response;
-        this.idAdmin = this.infoAdmin.id;
-      });
-
+  ngOnInit() { 
     this.editInfoForm();
   }
   editInfoForm() {
@@ -53,7 +42,6 @@ export class EditProfileOwnerComponent implements OnInit {
   onSubmit() {  
     this.authService.updateInfoUser( this.editForm.value.password, this.headerConfig).subscribe(
       data => {
-        console.log(data);
         this.router.navigate(['/admin/profile/view-profile']);
       }
     );

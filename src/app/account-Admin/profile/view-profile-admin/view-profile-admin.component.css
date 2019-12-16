@@ -226,7 +226,7 @@ form .form-group .custom-select {
 }
 
 .content.view-profile .heading-part {
-    padding: 0 0px 30px 0;
+    padding: 0 0px 30px 15px;
 }
 
 .content.view-profile .heading-part p {
@@ -279,18 +279,6 @@ form .form-group .custom-select {
 
 /* ****************************Dashboard Media Queries End Here************************** */
 
-
-/*# sourceMappingURL=responsive.css.map */
-
-
-/*!
- * Bootstrap v4.2.1 (https://getbootstrap.com/)
- * Copyright 2011-2018 The Bootstrap Authors
- * Copyright 2011-2018 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
-*,
  ::after,
  ::before {
     box-sizing: border-box

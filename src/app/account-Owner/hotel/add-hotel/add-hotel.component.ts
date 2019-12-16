@@ -22,7 +22,6 @@ export class AddHotelComponent implements OnInit {
   public submitted = false;
   public loading = false;
   public formAddHouse: FormGroup;
-  public hotel: Hotel;
   public city: string;
   public name: string;
   public link: string;
@@ -30,12 +29,15 @@ export class AddHotelComponent implements OnInit {
   public img: string;
   public rating: number;
   public price: number;
-  private cities: any;
   public option: string;
   public myControl = new FormControl();
   public filteredOptions: Observable<string[]>;
-  private temp: any;
   public errorMessage: string;
+
+  private temp: any;
+  private hotel: Hotel;
+  private cities: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private ownerService: OwnerService,
@@ -105,10 +107,10 @@ export class AddHotelComponent implements OnInit {
     this.hotel.rating = this.formAddHouse.value.rating;
     this.hotel.img = this.formAddHouse.value.img;
     if (
-      this.hotel.name != null &&
-      this.hotel.address != null &&
-      this.hotel.city != null &&
-      this.hotel.price != null && this.hotel.price > 99999 && this.hotel.price < 9999999 &&
+      this.hotel.name != "" &&
+      this.hotel.address != "" &&
+      this.hotel.city != "" &&
+      this.hotel.price != null && this.hotel.price > 99999 && this.hotel.price < 10000000 &&
       this.hotel.rating != null && this.hotel.rating > 0 && this.hotel.rating < 11
     ) {
       this.ownerService

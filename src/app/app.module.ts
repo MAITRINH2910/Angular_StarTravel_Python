@@ -14,7 +14,7 @@ import { ViewProfileAdminComponent } from "./account-Admin/profile/view-profile-
 import { AllHotelComponent, DeleteHotelModal } from "./account-Admin/list-hotel/all-hotel/all-hotel.component";
 import { ApprovedHotelComponent } from "./account-Admin/list-hotel/approved-hotel/approved-hotel.component";
 import { PendingHotelComponent } from "./account-Admin/list-hotel/pending-hotel/pending-hotel.component";
-import { ListUserComponent, DeleteUserModal} from "./account-Admin/list-user/list-user.component";
+import { ListUserComponent, DeleteUserModal, AlertDeleteAdmin, AlertDeleteFail} from "./account-Admin/list-user/list-user.component";
 import { EditHotelComponent } from "./account-Admin/list-hotel/edit-hotel/edit-hotel.component";
 
 import { LoginComponent } from "./auth/login/login.component";
@@ -79,7 +79,9 @@ import { EditHotelOwnerComponent } from './account-Owner/hotel/edit-hotel-owner/
     DeleteUserModal,
     RegisterUserModal,
     DeleteHotelModal,
-    EditHotelOwnerComponent
+    EditHotelOwnerComponent,
+    AlertDeleteAdmin,
+    AlertDeleteFail
   ],
   imports: [
     BrowserModule,
@@ -97,7 +99,9 @@ import { EditHotelOwnerComponent } from './account-Owner/hotel/edit-hotel-owner/
     RegisterUserModal,
     BookingModalComponent,
     DeleteUserModal,
-    DeleteHotelModal
+    DeleteHotelModal,
+    AlertDeleteAdmin,
+    AlertDeleteFail
   ],
   providers: [RoleGuard],
   bootstrap: [AppComponent]

@@ -156,7 +156,7 @@
                                                 <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.price.dirty && formAddHouse.controls.price.invalid 
                                                       ||formAddHouse.controls.price.touched">
                                                     <div *ngIf="formAddHouse.controls.price.hasError('required'); else price">This field is required!</div>
-                                                    <div *ngIf="formAddHouse.controls.price.hasError('pattern')">100.000VND - 9.000.000VND </div>
+                                                    <div *ngIf="formAddHouse.controls.price.hasError('pattern')">100.000VND - 9.999.999VND </div>
                                                 </div>
                                             </ng-template>
 

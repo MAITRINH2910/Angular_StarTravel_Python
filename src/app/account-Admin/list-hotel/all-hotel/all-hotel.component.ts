@@ -1,10 +1,16 @@
 import { Component, ViewChild, Inject } from "@angular/core";
 import { HttpHeaders } from "@angular/common/http";
 import { AdminService } from "src/app/service/admin.service";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
 import { Hotel } from "src/app/model/hotel.model";
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from "@angular/material";
 import { Router } from "@angular/router";
+import {
+  MatPaginator,
+  MatTableDataSource,
+  MatDialogRef,
+  MatDialog,
+  MAT_DIALOG_DATA
+} from "@angular/material";
+
 @Component({
   selector: "app-all-hotel",
   templateUrl: "./all-hotel.component.html",
@@ -15,17 +21,16 @@ export class AllHotelComponent {
     "name",
     "address",
     "city",
-    "hotel_owner",    
+    "hotel_owner",
     "price",
     "rating",
     "status",
     "action"
   ];
   public dataSource: MatTableDataSource<Hotel>;
-  public allHotel: Hotel[];
-  public temp: any;
+  private allHotel: Hotel[];
+  private temp: any;
   private paginator: MatPaginator;
-  private sort: MatSort;
 
   headerConfig = {
     headers: new HttpHeaders({
@@ -33,12 +38,7 @@ export class AllHotelComponent {
     })
   };
 
-  constructor(private adminService: AdminService, public dialog: MatDialog) {}
-
-  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
-  }
+  constructor(private adminService: AdminService, private dialog: MatDialog) {}
 
   @ViewChild(MatPaginator, { static: true }) set matPaginator(
     mp: MatPaginator
@@ -54,9 +54,8 @@ export class AllHotelComponent {
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
 
-    if (this.paginator && this.sort) {
+    if (this.paginator) {
       this.applyFilter("");
     }
   }
@@ -77,13 +76,7 @@ export class AllHotelComponent {
 
 @Component({
   selector: "delete-hotel-dialog",
-  styles: [
-    `
-      iframe {
-        width: 800px;
-      }
-    `
-  ],
+  styles: [],
   template: `
     <h2 mat-dialog-title>Do you want to delete this hotel?</h2>
 
@@ -104,14 +97,13 @@ export class AllHotelComponent {
 })
 export class DeleteHotelModal {
   public id: string;
-  public hotel: any;
-  public listHotel: Hotel[] = [];
 
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
     })
   };
+
   constructor(
     private adminService: AdminService,
     private routerService: Router,
@@ -124,19 +116,8 @@ export class DeleteHotelModal {
   }
 
   onDeleteHotel(id: string): void {
-    this.adminService.deleteHotel(id, this.headerConfig).subscribe(data => {
-      this.updateDataAfterDelete(id);
-    });
+    this.adminService.deleteHotel(id, this.headerConfig);
     this.routerService.navigate(["/admin/estay"]);
     this.dialogRef.close(true);
-  }
-
-  updateDataAfterDelete(idHotel: string) {
-    for (var i = 0; i < this.listHotel.length; i++) {
-      if (this.hotel[i].id == idHotel) {
-        this.listHotel.splice(i, 1);
-        break;
-      }
-    }
   }
 }

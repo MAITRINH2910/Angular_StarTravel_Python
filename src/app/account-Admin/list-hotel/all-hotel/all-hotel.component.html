@@ -66,16 +66,19 @@
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Owner </mat-header-cell>
                                 <mat-cell *matCellDef="let row" [style.color]="row.hotel_owner"> {{row.hotel_owner}} </mat-cell>
                             </ng-container>
+
                             <!-- price Column -->
                             <ng-container matColumnDef="price">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
                                 <mat-cell *matCellDef="let row" [style.color]="row.price"> {{row.price}} </mat-cell>
                             </ng-container>
+
                             <!-- rating Column -->
                             <ng-container matColumnDef="rating">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Rating </mat-header-cell>
                                 <mat-cell *matCellDef="let row" [style.color]="row.rating"> {{row.rating}} </mat-cell>
                             </ng-container>
+
                             <!-- status Column -->
                             <ng-container matColumnDef="status">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>

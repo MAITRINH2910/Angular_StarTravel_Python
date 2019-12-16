@@ -87,17 +87,17 @@ body {
 }
 
 
-/* Icon Start Travel */
+/* Text Start Travel */
 
 .wrapper .sidebar-left .sidebar-topbar i:first-child {
-    font-size: 28px;
+    font-size: 30px;
     transform: rotate(-45deg);
     color: red;
-    padding: 15px 18px;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 6px;
+    padding-left: 13px;
+    -webkit-transform: rotate(0deg);
 }
 
 .wrapper .sidebar-left .sidebar-topbar>span {

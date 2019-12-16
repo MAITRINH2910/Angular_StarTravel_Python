@@ -104,12 +104,12 @@ export class EditHotelOwnerComponent implements OnInit {
       this.hotel.rating = this.rating;
       this.hotel.img = this.img;
       if (
-        this.hotel.name != null &&
-        this.hotel.address != null &&
-        this.hotel.city != null &&
+        this.hotel.name != "" &&
+        this.hotel.address != "" &&
+        this.hotel.city != "" &&
         this.hotel.price != null &&
         this.hotel.price > 99999 &&
-        this.hotel.price < 9999999 &&
+        this.hotel.price < 10000000 &&
         this.hotel.rating != null &&
         this.hotel.rating > 0 &&
         this.hotel.rating < 11

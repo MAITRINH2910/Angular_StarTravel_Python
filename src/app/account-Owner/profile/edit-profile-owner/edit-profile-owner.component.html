@@ -43,11 +43,11 @@
                                             <label for="to2" class="">New Password :</label>
                                             <input type="password" class="form-control" required formControlName="password" name="password">
                                             <div class="alert-danger" *ngIf="submitted && editForm.get('password').errors; else notPass" class="invalid-feedback">
-                                                <div *ngIf="editForm.get('password').errors['required']">Password is required</div>
+                                                <div *ngIf="editForm.get('password').errors['required']" style="color: red">Password is required</div>
                                             </div>
                                             <ng-template #notPass>
                                                 <div class="alert-danger" *ngIf="editForm.get('password').dirty && editForm.get('password').errors">
-                                                    <div *ngIf="editForm.get('password').errors['required']">
+                                                    <div *ngIf="editForm.get('password').errors['required']" style="color: red">
                                                         Password is required</div>
                                                 </div>
                                             </ng-template>
@@ -62,14 +62,14 @@
                                             <label style="height:37px" for="to3" class="">Confirm Password:</label>
                                             <input style="height:38px" type="password" class="form-control" id="to3" formControlName="cfPassword" name="cfPassword">
                                             <div class="alert-danger" *ngIf="submitted && editForm.get('cfPassword').errors; else notCf" class="invalid-feedback">
-                                                <div *ngIf="editForm.get('cfPassword').errors['required']">Confirm Password is required</div>
-                                                <div *ngIf="editForm.get('cfPassword').errors['mustMatch']">Passwords must match</div>
+                                                <div *ngIf="editForm.get('cfPassword').errors['required']" style="color: red">Confirm Password is required</div>
+                                                <div *ngIf="editForm.get('cfPassword').errors['mustMatch']" style="color: red">Passwords must match</div>
                                             </div>
                                             <ng-template #notCf>
                                                 <div class="alert-danger" *ngIf="editForm.get('cfPassword').dirty && editForm.get('cfPassword').errors">
-                                                    <div *ngIf="editForm.get('cfPassword').errors['required']">
+                                                    <div *ngIf="editForm.get('cfPassword').errors['required']" style="color: red">
                                                         Confirm Password is required</div>
-                                                    <div *ngIf="editForm.get('cfPassword').touched &&editForm.get('cfPassword').errors['mustMatch']">
+                                                    <div *ngIf="editForm.get('cfPassword').touched &&editForm.get('cfPassword').errors['mustMatch']" style="color: red">
                                                         Passwords must match
                                                     </div>
                                                 </div>
@@ -81,10 +81,7 @@
                                 <!-- end form-group -->
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <button type="submit" class="btn">Update</button>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <button type="submit" class="btn">Cancel</button>
+                                        <button type="submit" class="btn" [disabled]="editForm.invalid">Update</button>
                                     </li>
                                 </ul>
                             </div>

@@ -84,7 +84,7 @@
                                     <h3 class="reviewTitle">Leave your review</h3>
                                     <p>Want to Rate it?
                                         <span><b class="gridSizeValue">{{ ratingValue.value }} <i class="fa fa-star"></i></b>                            
-                                            <mat-slider style="width: 250px" #ratingValue (change)="rating($event)" step="0.1" min="1" max="10" [value]="ratingValue"></mat-slider>
+                                            <mat-slider style="width: 250px" #ratingValue (change)="rating($event)" step="0.1" min="0" max="10" [value]="ratingValue"></mat-slider>
                                         </span>
                                     </p>
                                     <div class="row">

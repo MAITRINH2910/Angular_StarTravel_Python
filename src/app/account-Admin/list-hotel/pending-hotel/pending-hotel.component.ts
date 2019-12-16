@@ -1,13 +1,14 @@
 import { Component, ViewChild } from "@angular/core";
 import { HttpHeaders } from "@angular/common/http";
 import { AdminService } from "src/app/service/admin.service";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { Hotel } from "src/app/model/hotel.model";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-pending-hotel',
-  templateUrl: './pending-hotel.component.html',
-  styleUrls: ['./pending-hotel.component.css']
+  selector: "app-pending-hotel",
+  templateUrl: "./pending-hotel.component.html",
+  styleUrls: ["./pending-hotel.component.css"]
 })
 export class PendingHotelComponent {
   public displayedColumns: string[] = [
@@ -24,7 +25,6 @@ export class PendingHotelComponent {
   public allHotel: Hotel[];
   public temp: any;
   private paginator: MatPaginator;
-  private sort: MatSort;
 
   headerConfig = {
     headers: new HttpHeaders({
@@ -32,17 +32,11 @@ export class PendingHotelComponent {
     })
   };
 
-  constructor(private adminService: AdminService) {}
-
-  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
-  }
+  constructor(private adminService: AdminService, public router: Router) {}
 
   @ViewChild(MatPaginator, { static: true }) set matPaginator(
     mp: MatPaginator
   ) {
-    this.paginator = mp;
     this.setDataSourceAttributes();
   }
 
@@ -54,9 +48,8 @@ export class PendingHotelComponent {
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
 
-    if (this.paginator && this.sort) {
+    if (this.paginator) {
       this.applyFilter("");
     }
   }
@@ -67,10 +60,10 @@ export class PendingHotelComponent {
   }
 
   onSetStatus(hotel: Hotel) {
-    console.log(hotel);
     hotel.status = "ACTIVE";
     this.adminService.approveHotel(hotel, this.headerConfig).subscribe(data => {
-      window.location.reload();
+      this.setDataSourceAttributes();
     });
+    this.router.navigate(["admin"]);
   }
 }

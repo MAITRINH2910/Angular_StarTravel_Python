@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { AuthAccountService } from "src/app/service/auth-account.service";
 import { Router } from "@angular/router";
 
@@ -8,7 +8,6 @@ import { Router } from "@angular/router";
   styleUrls: ["./layout-admin.component.css"]
 })
 export class LayoutAdminComponent {
-
   constructor(
     private authService: AuthAccountService,
     private router: Router

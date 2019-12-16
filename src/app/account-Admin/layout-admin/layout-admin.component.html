@@ -4,7 +4,8 @@
             <i class="fa fa-plane"></i
       ><span class="text"
         ><a [routerLink]="['/']" routerLinkActive="router-link-active" style="color: red;
-        font-weight: 1000;"
+        font-weight: 1000;     font-family: cursive;
+"
           >Star Travels</a
         ></span
       >
@@ -13,18 +14,23 @@
 
         <div class="side-menu">
             <ul class="navbar-nav">
-                <li class="nav-item" id="dashboard-link">
-                    <a [routerLink]="['/admin/estay']" routerLinkActive="router-link-active" class="items-list first active">
-                        <span><i
-                class="fa fa-home link-icon"
-                data-toggle="tooltip"
-                data-html="true"
-                title="Dashboard" style="padding-left: 12px"
-              ></i
-            ></span>
-                        <span class="items-list-text" style="color: black;">Dashboard</span>
-                    </a>
-                </li>
+              <li class="nav-item" id="dashboard-link">
+                <a
+                  [routerLink]="['/admin/estay']"
+                  routerLinkActive="router-link-active"
+                  class="items-list first active" style="padding-left: 11px"
+                >
+                  <span
+                    ><i
+                      class="fa fa-home link-icon"
+                      data-toggle="tooltip"
+                      data-html="true"
+                      title="Dashboard"
+                    ></i
+                  ></span>
+                  <span class="items-list-text" style="color: black;">Dashboard</span>
+                </a>
+              </li>
                 <li class="nav-item">
                     <mat-accordion>
                         <mat-expansion-panel>

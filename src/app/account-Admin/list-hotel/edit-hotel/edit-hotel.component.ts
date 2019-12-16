@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import { Hotel } from "src/app/model/hotel.model";
-import { AdminService } from 'src/app/service/admin.service';
+import { AdminService } from "src/app/service/admin.service";
 
 @Component({
   selector: "app-edit-hotel",
@@ -14,35 +14,38 @@ import { AdminService } from 'src/app/service/admin.service';
   styleUrls: ["./edit-hotel.component.css"]
 })
 export class EditHotelComponent implements OnInit {
-  public hotel: any;
-  public property: any;
-  public utilities: any;
-  public formEdit: any;
+  private hotel: any;
+  private property: any;
   private cities: any;
-  public option: string;
+  private temp: any;  private status: string;
+  
   public myControl = new FormControl();
   public filteredOptions: Observable<string[]>;
-  private temp: any;
+  public option: string;
+  public formEdit: any;
   public errorMessage: string;
   public submitted = false;
+  public utilities: any;
   public img?: string;
   public name?: string;
   public address?: string;
   public price?: string;
   public rating?: string;
   public city?: string;
-  private status: string;
+
   constructor(
     private guestService: GuestService,
     private activatedRouteService: ActivatedRoute,
     private adminService: AdminService,
-    private routerService: Router,
+    private routerService: Router
   ) {}
+
   headerConfig = {
     headers: new HttpHeaders({
       "user-access-token": window.localStorage.getItem("AuthToken")
     })
   };
+
   async ngOnInit() {
     this.hotel = new Hotel();
     this.getHotel();
@@ -81,7 +84,7 @@ export class EditHotelComponent implements OnInit {
         this.img = this.property.img;
         this.price = this.property.price;
         this.rating = this.property.rating;
-        this.status = this.property.status
+        this.status = this.property.status;
         this.utilities = this.hotel.response.utilities;
         if (this.property.img == "") {
           this.img = "null";
@@ -103,12 +106,12 @@ export class EditHotelComponent implements OnInit {
       this.hotel.rating = this.rating;
       this.hotel.img = this.img;
       if (
-        this.hotel.name != null &&
-        this.hotel.address != null &&
-        this.hotel.city != null &&
+        this.hotel.name != "" &&
+        this.hotel.address != "" &&
+        this.hotel.city != "" &&
         this.hotel.price != null &&
         this.hotel.price > 99999 &&
-        this.hotel.price < 9999999 &&
+        this.hotel.price < 10000000 &&
         this.hotel.rating != null &&
         this.hotel.rating > 0 &&
         this.hotel.rating < 11

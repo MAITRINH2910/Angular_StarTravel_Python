@@ -50,7 +50,7 @@
 }
 
 .details-text h4 {
-    margin: 10px 20px;
+    margin: 10px 45px;
     border-bottom: 1px solid #cccccc;
     padding: 10px 0 20px 0;
 }
@@ -116,7 +116,7 @@ form {
 }
 
 form .form-group {
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 form .form-group>label {
@@ -132,7 +132,7 @@ form .form-group>label {
 }
 
 form .form-group .form-control {
-    padding: 0 0 0 180px;
+    padding: 0 0 0 175px;
 }
 
 form .form-group .custom-select {
@@ -334,8 +334,8 @@ h5 {
 .col-sm-8 {
     position: relative;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px
+    padding-right: 0px;
+    padding-left: 0px
 }
 
 .col {

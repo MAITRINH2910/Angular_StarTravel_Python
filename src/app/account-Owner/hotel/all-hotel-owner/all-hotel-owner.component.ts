@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { HttpHeaders } from "@angular/common/http";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { Hotel } from "src/app/model/hotel.model";
 import { MatDialog } from "@angular/material";
 import { Router } from "@angular/router";
@@ -13,14 +13,14 @@ import { DeleteHotelComponent } from '../delete-hotel/delete-hotel.component';
   styleUrls: ["./all-hotel-owner.component.css"]
 })
 export class AllHotelOwnerComponent implements OnInit {
-  dataSource: MatTableDataSource<Hotel>;
-  temp: any;
-  public message: any;
-  public allHotel: Hotel[];
+  private temp: any;
+  private allHotel: Hotel[];
   private paginator: MatPaginator;
-  private sort: MatSort;
+
   public hotel: any;
   public listHotel: Hotel[] = [];
+  public dataSource: MatTableDataSource<Hotel>;
+  public message: any; 
   public displayedColumns: string[] = [
     "name",
     "address",
@@ -34,7 +34,7 @@ export class AllHotelOwnerComponent implements OnInit {
 
   constructor(
     private ownerService: OwnerService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private routerService: Router
   ) {}
   headerConfig = {
@@ -45,11 +45,6 @@ export class AllHotelOwnerComponent implements OnInit {
 
   ngOnInit() {
     this.hotel = new Hotel();
-  }
-
-  @ViewChild(MatSort, { static: true }) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
   }
 
   @ViewChild(MatPaginator, { static: true }) set matPaginator(
@@ -66,8 +61,7 @@ export class AllHotelOwnerComponent implements OnInit {
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    if (this.paginator && this.sort) {
+    if (this.paginator) {
       this.applyFilter("");
     }
     this.message = this.temp.response.message;
@@ -81,6 +75,7 @@ export class AllHotelOwnerComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+  
   openDialog(id: string) {
    this.dialog.open(DeleteHotelComponent, {
       data: {
