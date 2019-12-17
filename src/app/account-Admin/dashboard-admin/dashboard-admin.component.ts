@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../common-api";
 import { AdminService } from "src/app/service/admin.service";
 
 @Component({
@@ -14,18 +14,12 @@ export class DashboardAdminComponent implements OnInit {
   public number_of_hotel_active : number;
   public number_of_hotel_inactive : number
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(
     private adminService: AdminService,
   ) {}
 
   ngOnInit() {      
-    this.adminService.getInfoDashboard(this.headerConfig).subscribe(data => {
+    this.adminService.getInfoDashboard(HeaderConfig).subscribe(data => {
       this.infoData = data;     
       this.infoData = this.infoData.response;
       this.number_of_user = this.infoData.number_of_user;

@@ -82,7 +82,7 @@
                                                        ||formAddHouse.controls.address.touched">
                                                     <div *ngIf="formAddHouse.controls.address.hasError('required'); else address">This field is required!</div>
                                                     <ng-template #address>
-                                                        <div *ngIf="formAddHouse.controls.address.hasError('whitespace')">This field is required!</div>
+                                                        <div *ngIf="formAddHouse.controls.address.hasError('removeSpaces')">This field is required!</div>
                                                     </ng-template>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                                       ||formAddHouse.controls.address.touched">
                                                     <div *ngIf="formAddHouse.controls.address.hasError('required'); else address">This field is required!</div>
                                                     <ng-template #address>
-                                                        <div *ngIf="formAddHouse.controls.address.hasError('whitespace')">This field is required!</div>
+                                                        <div *ngIf="formAddHouse.controls.address.hasError('removeSpaces')">This field is required!</div>
                                                     </ng-template>
                                                 </div>
                                             </ng-template>
@@ -116,14 +116,11 @@
                                                 </mat-autocomplete>
                                             </mat-form-field>
 
-                                            <div *ngIf="submitted; else notcity">
+                                            <!-- <div *ngIf="submitted; else notcity">
                                                 <div style="color: red; font-size: 14px" *ngIf="formAddHouse.controls.city.hasError('required')||formAddHouse.controls.city.dirty
                                                        && formAddHouse.controls.city.invalid
                                                        ||formAddHouse.controls.city.touched">
                                                     <div *ngIf="formAddHouse.controls.city.hasError('required'); else city">This field is required!</div>
-                                                    <ng-template #city>
-                                                        <div *ngIf="formAddHouse.controls.city.hasError('whitespace')">This field is required!</div>
-                                                    </ng-template>
                                                 </div>
                                             </div>
 
@@ -132,7 +129,7 @@
                                                       ||formAddHouse.controls.city.touched">
                                                     <div *ngIf="formAddHouse.controls.city.hasError('required')">This field is required!</div>
                                                 </div>
-                                            </ng-template>
+                                            </ng-template> -->
                                         </div>
                                         <!-- end form-group -->
                                     </div>

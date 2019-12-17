@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Hotel } from "./../../model/hotel.model";
 import { GuestService } from "src/app/service/guest.service";
 import { UserService } from "src/app/service/user.service";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../common-api";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { LoginModalComponent } from "../login-modal/login-modal.component";
@@ -29,12 +29,6 @@ export class DetailHotelComponent implements OnInit {
   public formFeedback: FormGroup;
   public authority: string;
   public role: string;
-
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
 
   constructor(
     private guestService: GuestService,
@@ -115,7 +109,7 @@ export class DetailHotelComponent implements OnInit {
             hotel_id,
             this.formFeedback.value.comment,
             this.ratingValue,
-            this.headerConfig
+            HeaderConfig
           )
           .subscribe(data => {
             // window.location.reload();

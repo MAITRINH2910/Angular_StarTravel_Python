@@ -3,7 +3,6 @@ import { TokenStorageService } from "src/app/service/token-storage.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthAccountService } from "src/app/service/auth-account.service";
 import { AuthLoginInfo } from "src/app/model/login.model";
-import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { SignUpInfo } from "src/app/model/signup.model";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 
@@ -257,7 +256,7 @@ export class RegisterUserModal {
     private formBuilder: FormBuilder,
     private authService: AuthAccountService,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<RegisterModalComponent>
+    public dialogRef: MatDialogRef<RegisterUserModal>
   ) {}
 
   ngOnInit() {

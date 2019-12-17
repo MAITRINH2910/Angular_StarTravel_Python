@@ -4,10 +4,10 @@ import {
   MatDialog,
   MAT_DIALOG_DATA
 } from "@angular/material";
-import { HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { OwnerService } from "src/app/service/owner.service";
 import { Hotel } from 'src/app/model/hotel.model';
+import { HeaderConfig } from "../../../common-api";
 
 @Component({
   selector: "app-delete-hotel",
@@ -22,11 +22,6 @@ export class DeleteHotelComponent {
   public hotel: any;
   public listHotel: Hotel[] = [];
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
   constructor( private ownerService: OwnerService,
     public dialog: MatDialog,
     private routerService: Router,
@@ -39,7 +34,7 @@ export class DeleteHotelComponent {
   }
 
   onDeleteList(id: string): void {
-    this.ownerService.deleteHotel(id, this.headerConfig).subscribe(data => {
+    this.ownerService.deleteHotel(id, HeaderConfig).subscribe(data => {
       this.updateDataAfterDelete(id);
     });
     this.routerService.navigate(["/host/dashboard"]);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { AuthAccountService } from 'src/app/service/auth-account.service';
 
 @Component({
@@ -10,15 +10,10 @@ import { AuthAccountService } from 'src/app/service/auth-account.service';
   styleUrls: ['./edit-profile-owner.component.css']
 })
 export class EditProfileOwnerComponent implements OnInit {
-  public infoAdmin: any;
   public message: string;
   public editForm: FormGroup;
   public submitted = false;
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
+
   constructor(
     private authService: AuthAccountService,
     private formBuilder: FormBuilder,
@@ -40,7 +35,7 @@ export class EditProfileOwnerComponent implements OnInit {
     );
   }
   onSubmit() {  
-    this.authService.updateInfoUser( this.editForm.value.password, this.headerConfig).subscribe(
+    this.authService.updateInfoUser( this.editForm.value.password, HeaderConfig).subscribe(
       data => {
         this.router.navigate(['/admin/profile/view-profile']);
       }

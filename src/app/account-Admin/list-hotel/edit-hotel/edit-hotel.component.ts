@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { Hotel } from "src/app/model/hotel.model";
 import { AdminService } from "src/app/service/admin.service";
 
@@ -17,8 +17,9 @@ export class EditHotelComponent implements OnInit {
   private hotel: any;
   private property: any;
   private cities: any;
-  private temp: any;  private status: string;
-  
+  private temp: any;
+  private status: string;
+
   public myControl = new FormControl();
   public filteredOptions: Observable<string[]>;
   public option: string;
@@ -39,12 +40,6 @@ export class EditHotelComponent implements OnInit {
     private adminService: AdminService,
     private routerService: Router
   ) {}
-
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
 
   async ngOnInit() {
     this.hotel = new Hotel();
@@ -97,6 +92,7 @@ export class EditHotelComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
     this.activatedRouteService.params.subscribe(data => {
       this.hotel.name = this.name;
       this.hotel.address = this.address;
@@ -105,39 +101,43 @@ export class EditHotelComponent implements OnInit {
       this.hotel.price = this.price;
       this.hotel.rating = this.rating;
       this.hotel.img = this.img;
-      if (
-        this.hotel.name != "" &&
-        this.hotel.address != "" &&
-        this.hotel.city != "" &&
-        this.hotel.price != null &&
-        this.hotel.price > 99999 &&
-        this.hotel.price < 10000000 &&
-        this.hotel.rating != null &&
-        this.hotel.rating > 0 &&
-        this.hotel.rating < 11
-      ) {
-        this.adminService
-          .updateHotel(
-            this.hotel.response.detail_hotels.id,
-            this.hotel.name,
-            this.hotel.address,
-            this.hotel.city,
-            this.hotel.link,
-            this.hotel.img,
-            this.hotel.rating,
-            this.hotel.price,
-            this.status,
-            this.headerConfig
-          )
-          .subscribe(data => {
-            this.temp = data;
-            if (this.temp.status == 400) {
-              this.errorMessage = this.temp.response.error;
-            }
-            if (this.temp.status == 200) {
-              this.routerService.navigate(["admin/listing/all-hotel"]);
-            }
-          });
+      for (let i = 0; i < this.cities.length; i++) {
+        if (this.city == this.cities[i]) {
+          if (
+            this.hotel.name != "" &&
+            this.hotel.address != "" &&
+            this.hotel.city != "" &&
+            this.hotel.price != null &&
+            this.hotel.price > 99999 &&
+            this.hotel.price < 10000000 &&
+            this.hotel.rating != null &&
+            this.hotel.rating > 0 &&
+            this.hotel.rating < 11
+          ) {
+            this.adminService
+              .updateHotel(
+                this.hotel.response.detail_hotels.id,
+                this.hotel.name,
+                this.hotel.address,
+                this.hotel.city,
+                this.hotel.link,
+                this.hotel.img,
+                this.hotel.rating,
+                this.hotel.price,
+                this.status,
+                HeaderConfig
+              )
+              .subscribe(data => {
+                this.temp = data;
+                if (this.temp.status == 400) {
+                  this.errorMessage = this.temp.response.error;
+                }
+                if (this.temp.status == 200) {
+                  this.routerService.navigate(["admin/listing/all-hotel"]);
+                }
+              });
+          }
+        }
       }
     });
   }

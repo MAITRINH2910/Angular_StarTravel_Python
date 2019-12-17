@@ -1,12 +1,11 @@
 import { Component, ViewChild, Inject } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../common-api";
 import { AdminService } from "src/app/service/admin.service";
 import { User } from "src/app/model/user.model";
 import { Router } from "@angular/router";
 import {
-  MatSort,
   MatDialogRef,
   MatDialog,
   MAT_DIALOG_DATA
@@ -23,12 +22,6 @@ export class ListUserComponent {
   private temp: any;
   private paginator: MatPaginator;
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(private adminService: AdminService, public dialog: MatDialog) {}
 
   @ViewChild(MatPaginator, { static: true }) set matPaginator(
@@ -40,7 +33,7 @@ export class ListUserComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getAllUser(this.headerConfig)
+      .getAllUser(HeaderConfig)
       .toPromise();
     this.allUser = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allUser);
@@ -87,14 +80,10 @@ export class ListUserComponent {
 })
 export class DeleteUserModal {
   public id: string;
-  private listUser: User[] = [];
-  private user: any;
+  public listUser: User[] = [];
+  public user: any;
   private temp: any;
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
+
   constructor(
     private adminService: AdminService,
     private dialog: MatDialog,
@@ -108,7 +97,7 @@ export class DeleteUserModal {
   }
 
   onDeleteUser(id: string): void {
-    this.adminService.deleteUser(id, this.headerConfig).subscribe(data => {
+    this.adminService.deleteUser(id, HeaderConfig).subscribe(data => {
       this.temp = data;
       if (this.temp.response.error == "Permission denied!") {
         this.dialog.open(AlertDeleteAdmin);

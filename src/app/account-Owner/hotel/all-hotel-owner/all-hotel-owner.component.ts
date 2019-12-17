@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
-import { MatPaginator, MatTableDataSource } from "@angular/material";
+import { HeaderConfig } from "../../../common-api";
+import { MatPaginator, MatTableDataSource, MatDialog } from "@angular/material";
 import { Hotel } from "src/app/model/hotel.model";
-import { MatDialog } from "@angular/material";
-import { Router } from "@angular/router";
 import { OwnerService } from "src/app/service/owner.service";
 import { DeleteHotelComponent } from '../delete-hotel/delete-hotel.component';
 
@@ -35,13 +33,7 @@ export class AllHotelOwnerComponent implements OnInit {
   constructor(
     private ownerService: OwnerService,
     private dialog: MatDialog,
-    private routerService: Router
   ) {}
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
 
   ngOnInit() {
     this.hotel = new Hotel();
@@ -56,7 +48,7 @@ export class AllHotelOwnerComponent implements OnInit {
 
   async setDataSourceAttributes() {
     this.temp = await this.ownerService
-      .getAllHotelsByOwner(this.headerConfig)
+      .getAllHotelsByOwner(HeaderConfig)
       .toPromise();
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);
@@ -64,10 +56,7 @@ export class AllHotelOwnerComponent implements OnInit {
     if (this.paginator) {
       this.applyFilter("");
     }
-    this.message = this.temp.response.message;
-    if (this.message!=null){
-      this.routerService.navigate(['login-owner'])
-    }
+  
   }
 
   applyFilter(filterValue: string) {

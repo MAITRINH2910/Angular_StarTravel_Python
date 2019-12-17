@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { AdminService } from "src/app/service/admin.service";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { Hotel } from "src/app/model/hotel.model";
@@ -25,12 +25,6 @@ export class ApprovedHotelComponent {
   private temp: any;
   private paginator: MatPaginator;
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(
     private adminService: AdminService
   ) {}  
@@ -44,7 +38,7 @@ export class ApprovedHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getActiveHotel(this.headerConfig)
+      .getActiveHotel(HeaderConfig)
       .toPromise();
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);

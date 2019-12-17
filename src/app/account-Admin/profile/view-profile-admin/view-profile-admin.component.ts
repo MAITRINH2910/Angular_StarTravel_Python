@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { AuthAccountService } from "src/app/service/auth-account.service";
 
 @Component({
@@ -12,17 +12,11 @@ export class ViewProfileAdminComponent implements OnInit {
   public username;
   public role;
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(private authService: AuthAccountService) {}
 
   ngOnInit() {
     this.infoAdmin = this.authService
-      .getInfoUser(this.headerConfig)
+      .getInfoUser(HeaderConfig)
       .subscribe(data => {
         this.infoAdmin = data;
         this.infoAdmin = this.infoAdmin.response;

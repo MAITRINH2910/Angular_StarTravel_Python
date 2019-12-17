@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
 import { OwnerService } from 'src/app/service/owner.service';
+import { HeaderConfig } from "../../common-api";
 
 @Component({
   selector: 'app-dashboard-owner',
@@ -12,19 +12,14 @@ export class DashboardOwnerComponent implements OnInit {
   public number_of_hotel: number;
   public number_of_hotel_active: number;
   public number_of_hotel_inactive: number;
+ 
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
-  constructor(
+  constructor(  
     private ownerService: OwnerService
   ) {}
 
   ngOnInit() {
-    this.ownerService.getInfoDashboardOwner(this.headerConfig).subscribe(data => {
+    this.ownerService.getInfoDashboardOwner(HeaderConfig).subscribe(data => {      
       this.infoData = data;
       this.infoData = this.infoData.response; 
       this.number_of_hotel = this.infoData.number_of_hotel;

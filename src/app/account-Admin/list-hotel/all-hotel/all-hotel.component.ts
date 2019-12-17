@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { AdminService } from "src/app/service/admin.service";
 import { Hotel } from "src/app/model/hotel.model";
 import { Router } from "@angular/router";
@@ -32,12 +32,6 @@ export class AllHotelComponent {
   private temp: any;
   private paginator: MatPaginator;
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(private adminService: AdminService, private dialog: MatDialog) {}
 
   @ViewChild(MatPaginator, { static: true }) set matPaginator(
@@ -49,7 +43,7 @@ export class AllHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getAllHotel(this.headerConfig)
+      .getAllHotel(HeaderConfig)
       .toPromise();
     this.allHotel = this.temp.response;
     this.dataSource = new MatTableDataSource(this.allHotel);
@@ -98,12 +92,6 @@ export class AllHotelComponent {
 export class DeleteHotelModal {
   public id: string;
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(
     private adminService: AdminService,
     private routerService: Router,
@@ -116,7 +104,7 @@ export class DeleteHotelModal {
   }
 
   onDeleteHotel(id: string): void {
-    this.adminService.deleteHotel(id, this.headerConfig);
+    this.adminService.deleteHotel(id, HeaderConfig);
     this.routerService.navigate(["/admin/estay"]);
     this.dialogRef.close(true);
   }

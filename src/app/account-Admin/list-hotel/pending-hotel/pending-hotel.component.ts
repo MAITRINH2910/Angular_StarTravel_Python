@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { AdminService } from "src/app/service/admin.service";
 import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { Hotel } from "src/app/model/hotel.model";
@@ -26,12 +26,6 @@ export class PendingHotelComponent {
   public temp: any;
   private paginator: MatPaginator;
 
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
-
   constructor(private adminService: AdminService, public router: Router) {}
 
   @ViewChild(MatPaginator, { static: true }) set matPaginator(
@@ -42,7 +36,7 @@ export class PendingHotelComponent {
 
   async setDataSourceAttributes() {
     this.temp = await this.adminService
-      .getPendingHotel(this.headerConfig)
+      .getPendingHotel(HeaderConfig)
       .toPromise();
 
     this.allHotel = this.temp.response;
@@ -61,7 +55,7 @@ export class PendingHotelComponent {
 
   onSetStatus(hotel: Hotel) {
     hotel.status = "ACTIVE";
-    this.adminService.approveHotel(hotel, this.headerConfig).subscribe(data => {
+    this.adminService.approveHotel(hotel, HeaderConfig).subscribe(data => {
       this.setDataSourceAttributes();
     });
     this.router.navigate(["admin"]);

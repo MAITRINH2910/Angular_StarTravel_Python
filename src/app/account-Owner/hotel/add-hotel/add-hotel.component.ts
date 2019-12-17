@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Hotel } from "src/app/model/hotel.model";
-import { HttpHeaders } from "@angular/common/http";
+import { HeaderConfig } from "../../../common-api";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { OwnerService } from "src/app/service/owner.service";
@@ -44,11 +44,6 @@ export class AddHotelComponent implements OnInit {
     private routerService: Router,
     private guestService: GuestService
   ) {}
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
 
   public noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || "").trim().length === 0;
@@ -85,7 +80,7 @@ export class AddHotelComponent implements OnInit {
   createForm() {
     this.formAddHouse = this.formBuilder.group({
       name: ["", Validators.required],
-      address: ["", Validators.required],
+      address: ["", [Validators.required, removeSpaces]],
       city: ["", Validators.required],
       img: [""],
       rating: ["", [Validators.required, Validators.pattern("^([1-9]|10)$")]],
@@ -98,41 +93,56 @@ export class AddHotelComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     this.hotel.name = this.formAddHouse.value.name;
     this.hotel.address = this.formAddHouse.value.address;
-    this.hotel.city = this.city;
-    this.hotel.link = "";
+    this.hotel.city = this.city;    
+    this.hotel.link = ""; 
     this.hotel.price = this.formAddHouse.value.price;
     this.hotel.rating = this.formAddHouse.value.rating;
     this.hotel.img = this.formAddHouse.value.img;
-    if (
-      this.hotel.name != "" &&
-      this.hotel.address != "" &&
-      this.hotel.city != "" &&
-      this.hotel.price != null && this.hotel.price > 99999 && this.hotel.price < 10000000 &&
-      this.hotel.rating != null && this.hotel.rating > 0 && this.hotel.rating < 11
-    ) {
-      this.ownerService
-        .addHouse(
-          this.hotel.city,
-          this.hotel.name,
-          this.hotel.link,
-          this.hotel.img,
-          this.hotel.address,
-          this.hotel.rating,
-          this.hotel.price,
-          this.headerConfig
-        )
-        .subscribe(data => {
-          this.temp = data;
-          if (this.temp.status == 400) {
-            this.errorMessage = this.temp.response.error;
-          }
-          if (this.temp.status == 200) {
-            this.routerService.navigate(["host/hotel/all-hotel"]);
-          }
-        });
+    for (let i = 0; i < this.cities.length; i++) {
+      if (this.city == this.cities[i]) {
+        if (
+          this.hotel.name != "" &&
+          this.hotel.address != "" &&
+          this.hotel.city != "" &&
+          this.hotel.price != null &&
+          this.hotel.price > 99999 &&
+          this.hotel.price < 10000000 &&
+          this.hotel.rating != null &&
+          this.hotel.rating > 0 &&
+          this.hotel.rating < 11
+        ) {
+          this.ownerService
+            .addHouse(
+              this.hotel.city,
+              this.hotel.name,
+              this.hotel.link,
+              this.hotel.img,
+              this.hotel.address.trim(),
+              this.hotel.rating,
+              this.hotel.price,
+              HeaderConfig
+            )
+            .subscribe(data => {
+              this.temp = data;
+              if (this.temp.status == 400) {
+                this.errorMessage = this.temp.response.error;
+              }
+              if (this.temp.status == 200) {
+                this.routerService.navigate(["host/hotel/all-hotel"]);
+              }
+            });
+        }
+      }
     }
   }
+}
+import { AbstractControl } from '@angular/forms';
+
+export function removeSpaces(control: AbstractControl) {
+  if (control && control.value && !control.value.replace(/\s/g, '').length) {
+    control.setValue('');
+  }
+  return null;
 }

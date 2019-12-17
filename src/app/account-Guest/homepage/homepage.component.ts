@@ -53,23 +53,28 @@ export class HomepageComponent implements OnInit {
 
   // Click button Search
   async onSubmit() {
-    this.listFeature = await this.guestService
-      .getFeatureByCity(this.city)
-      .toPromise();
-    this.listFeature = this.listFeature.response;
-
-    this.topHotel = await this.guestService
-      .getTopHotelByCity(this.city)
-      .toPromise();
-    this.topHotel = this.topHotel.response;
-
-    this.guestService.listFeature = this.listFeature;
-    this.guestService.topHotel = this.topHotel;
-    this.guestService.city = this.city;
-
-    this.routerService.navigate(["/top-hotel"]);
+    for (let i = 0; i < this.cities.length; i++) {
+      if (this.city == this.cities[i]) {
+        this.listFeature = await this.guestService
+          .getFeatureByCity(this.city)
+          .toPromise();
+        this.listFeature = this.listFeature.response;
+  
+        this.topHotel = await this.guestService
+          .getTopHotelByCity(this.city)
+          .toPromise();
+        this.topHotel = this.topHotel.response;
+  
+        this.guestService.listFeature = this.listFeature;
+        this.guestService.topHotel = this.topHotel;
+        this.guestService.city = this.city;
+  
+        this.routerService.navigate(["/top-hotel"]);
+      }
+    }
+   
   }
- 
+
   logout() {
     this.authService.logout();
   }

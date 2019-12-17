@@ -29,7 +29,6 @@ import { PredictHotelComponent } from "./account-Guest/predict-hotel/predict-hot
 import { LayoutComponent } from "./account-Guest/layout/layout.component";
 import { LoginModalComponent, RegisterUserModal } from "./account-Guest/login-modal/login-modal.component";
 import { RemindFormReviewComponent } from "./account-Guest/remind-form-review/remind-form-review.component";
-import { RegisterModalComponent } from "./account-Guest/register-modal/register-modal.component";
 import { BookingModalComponent } from './account-Guest/booking-modal/booking-modal.component';
 
 import { LayoutOwnerComponent } from "./account-Owner/layout-owner/layout-owner.component";
@@ -74,7 +73,6 @@ import { EditHotelOwnerComponent } from './account-Owner/hotel/edit-hotel-owner/
     LoginModalComponent,
     DeleteHotelComponent,
     RemindFormReviewComponent,
-    RegisterModalComponent,
     BookingModalComponent,
     DeleteUserModal,
     RegisterUserModal,

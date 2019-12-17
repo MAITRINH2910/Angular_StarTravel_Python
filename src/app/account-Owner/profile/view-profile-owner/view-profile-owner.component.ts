@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthAccountService } from 'src/app/service/auth-account.service';
-import { HttpHeaders } from '@angular/common/http';
+import { HeaderConfig } from "../../../common-api";
 
 @Component({
   selector: 'app-view-profile-owner',
@@ -12,16 +12,11 @@ export class ViewProfileOwnerComponent implements OnInit {
   private infoHost: any;
   public username;
   public role;
-  headerConfig = {
-    headers: new HttpHeaders({
-      "user-access-token": window.localStorage.getItem("AuthToken")
-    })
-  };
 
   constructor(private authService: AuthAccountService) {}
 
   ngOnInit() {
-    this.infoHost = this.authService.getInfoUser(this.headerConfig).subscribe(data => {
+    this.infoHost = this.authService.getInfoUser(HeaderConfig).subscribe(data => {
         this.infoHost = data;
         this.infoHost = this.infoHost.response;
         this.role = this.infoHost.role;
